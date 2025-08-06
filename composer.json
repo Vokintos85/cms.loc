@@ -1,0 +1,18 @@
+{
+    "version": "1.0.0",
+    "name": "vokintos/projectcms",
+    "autoload": {
+        "psr-4": {
+            "Vokintos\\Projectcms\\": "src/",
+            "Engine\\": "engine",
+            "Engine\\DI\\": "engine/DI"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sergey",
+            "email": "gizya_85@mail.ru"
+        }
+    ],
+    "require": {}
+}
