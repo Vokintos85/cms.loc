@@ -2,68 +2,57 @@
 
 namespace Engine\Core\Database;
 use \PDO;
+use \PDOException;
 
 class Connection
 {
     private $link;
-
-    /**
-     * Connection constructor.
-     */
 
     public function __construct()
     {
         $this->connect();
     }
 
-    /**
-     * @return $this
-     */
     private function connect()
     {
         $config = [
-                'host'     =>'localhost',
-                'db_name'  =>'test_pdo',
-                'username' =>'root',
-                'password' =>'',
-                'charset'  =>'utf8'
+                'host'     => 'mysql', // Имя сервиса из docker-compose.yml
+                'db_name'  => 'app_db', // Из environment MYSQL_DATABASE
+                'username' => 'app_user', // Из environment MYSQL_USER
+                'password' => 'app_pass', // Из environment MYSQL_PASSWORD
+                'charset'  => 'utf8mb4'
         ];
 
         $dsn = 'mysql:host='.$config['host'].';dbname='.$config['db_name'].';charset='.$config['charset'];
 
-        $this->link = new PDO($dsn, $config['username'], $config['password']);
+        try {
+            $this->link = new PDO($dsn, $config['username'], $config['password'], [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false,
+            ]);
+        } catch (PDOException $e) {
+            die('Database connection failed: ' . $e->getMessage());
+        }
 
         return $this;
     }
 
-    /**
-     * @param $sql
-     * @return mixed
-     */
-    public function execute($sql)
+    public function execute($sql, $params = [])
     {
         $sth = $this->link->prepare($sql);
-
-        return $sth->execute();
+        return $sth->execute($params);
     }
 
-    /**
-     * @param $sql
-     * @return array
-     */
-
-    public function query($sql)
+    public function query($sql, $params = [])
     {
         $sth = $this->link->prepare($sql);
-
-        $sth->execute();
-
-        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-
-        if ($result === false){
-            return[];
-        }
-        return $result;
+        $sth->execute($params);
+        return $sth->fetchAll(PDO::FETCH_ASSOC) ?: [];
     }
 
+    public function lastInsertId()
+    {
+        return $this->link->lastInsertId();
+    }
 }

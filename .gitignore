@@ -1,1 +1,10 @@
+# Игнорируемые файлы
 /vendor/
+/node_modules/
+/.idea/
+/.vscode/
+.env
+docker-compose.override.yml
+src/public/storage
+src/storage/framework/*
+!src/storage/framework/.gitkeep
