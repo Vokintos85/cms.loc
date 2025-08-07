@@ -24,8 +24,8 @@ class Cms
      */
     public function run()
     {
-        $this->router->add('home', '/', 'HomeController:Index');
-        $this->router->add('product', '/product/id', 'ProductController:Index');
+        //$this->router->add('home', '/', 'HomeController:Index');
+        //$this->router->add('product', '/product/id', 'ProductController:Index');
 
 
         print_r($this->di);
