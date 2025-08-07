@@ -10,7 +10,7 @@ class Cms
     public $router;
 
     /**
-     * Cms constructor.
+     * cms constructor.
      * @param $di
      */
     public function __construct($di)
@@ -20,14 +20,15 @@ class Cms
     }
 
     /**
-     * Run Cms
+     * Run cms
      */
     public function run()
     {
         //$this->router->add('home', '/', 'HomeController:Index');
         //$this->router->add('product', '/product/id', 'ProductController:Index');
 
-
-        print_r($this->di);
+        //$routerDispatch = $this->router->dispatch('GET', );
+        //print_r($this->di);
+        print_r($_SERVER);
     }
 }

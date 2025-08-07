@@ -5,6 +5,7 @@ namespace Engine\Core\Router;
 class Router
 {
    private $routes = [];
+   private $dispatcher;
    private $host;
 
     /**
@@ -27,8 +28,23 @@ class Router
        $this->routes[$key] = [
                'pattern'    => $pattern,
                'controller' => $method,
-               'method'     => $method,
+               'method'     => $method
 
 ];
    }
+
+    public function dispatch($method, $uri)
+    {
+
+    }
+
+    public function getDispatcher()
+    {
+        if ($this->dispatcher == null)
+        {
+
+        }
+        return $this->dispatcher;
+    }
 }
+
