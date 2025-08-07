@@ -9,39 +9,39 @@ class DI
      *
      * @var array<string, mixed>
      */
-private $container = [];
+    private $container = [];
 
     /**
      * Adds a dependency to the container.
      *
-     * @param string $key   The unique identifier for the dependency.
-     * @param mixed  $value The dependency instance or value.
+     * @param string $key The unique identifier for the dependency.
+     * @param mixed $value The dependency instance or value.
      *
      * @return $this Allows method chaining.
      */
-public function set ($key, $value)
-{
-$this->container[$key] = $value;
+    public function set($key, $value)
+    {
+        $this->container[$key] = $value;
 
-return $this;
-}
+        return $this;
+    }
 
     /**
      * @param $key
      * @return mixed
      */
-public function get($key)
-{
-return $this-> has($key);
-}
+    public function get($key)
+    {
+        return $this->has($key);
+    }
 
     /**
      * @param $key
      * @return bool
      */
-public function has($key)
-{
-return isset($this->container[$key]) ? $this->container [$key] : null;
-}
+    public function has($key)
+    {
+        return isset($this->container[$key]) ? $this->container [$key] : null;
+    }
 
 }
