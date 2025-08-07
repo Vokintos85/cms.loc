@@ -16,14 +16,15 @@ class Connection
     private function connect()
     {
         $config = [
-                'host'     => 'mysql', // Имя сервиса из docker-compose.yml
-                'db_name'  => 'app_db', // Из environment MYSQL_DATABASE
-                'username' => 'app_user', // Из environment MYSQL_USER
-                'password' => 'app_pass', // Из environment MYSQL_PASSWORD
+                'host'     => '127.0.0.1', // Имя сервиса из docker-compose.yml
+                'port'     => '3306', // Имя сервиса из docker-compose.yml
+                'db_name'  => 'cms', // Из environment MYSQL_DATABASE
+                'username' => 'cms', // Из environment MYSQL_USER
+                'password' => 'cms', // Из environment MYSQL_PASSWORD
                 'charset'  => 'utf8mb4'
         ];
 
-        $dsn = 'mysql:host='.$config['host'].';dbname='.$config['db_name'].';charset='.$config['charset'];
+        $dsn = 'mysql:host='.$config['host'].';port='.$config['port'].';dbname='.$config['db_name'].';charset='.$config['charset'];
 
         try {
             $this->link = new PDO($dsn, $config['username'], $config['password'], [
