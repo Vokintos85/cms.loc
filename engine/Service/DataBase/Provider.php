@@ -7,15 +7,12 @@ use Engine\Core\Database\Connection;
 
 class Provider extends AbstractProvider
 {
-    public $serviceName = 'db';
+    public string $serviceName = 'db';
 
-    /**
-     * @return mixed
-     */
-  public  function init()
-    {
+  public  function init(): void
+  {
       $db = new Connection();
 
       $this->di->set($this->serviceName, $db);
-    }
+  }
 }

@@ -13,10 +13,7 @@ class Provider extends AbstractProvider
 
     public $serviceName = 'router';
 
-    /**
-     * @return mixed
-     */
-    public  function init()
+    public  function init(): void
     {
         $router = new Router('');
 

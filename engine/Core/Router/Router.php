@@ -16,14 +16,7 @@ class Router
        $this->$host = $host;
    }
 
-    /**
-     * @param $key
-     * @param $pattern
-     * @param $controller
-     * @param $method
-     * @return void
-     */
-   public function add($key, $pattern, $controller, $method = 'GET')
+   public function add($key, $pattern, $controller, $method = 'GET'): void
    {
        $this->routes[$key] = [
                'pattern'    => $pattern,
@@ -33,7 +26,7 @@ class Router
        ];
    }
 
-    public function dispatch($method, $uri)
+    public function dispatch($method, $uri): ?DispatchedRoute
     {
         return $this->getDispatcher()->dispatch($method, $uri);
     }
