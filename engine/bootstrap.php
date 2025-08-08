@@ -9,7 +9,7 @@ try{
     //Dependency injection
     $di = new DI();
 
-    $services = require __DIR__.'/config/Service.php';
+    $services = require __DIR__ . '/config/service.php';
 //Init services
     foreach ($services as $service){
 

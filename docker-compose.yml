@@ -7,7 +7,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - .:/var/www/html
+      - ./src:/var/www/html
     depends_on:
       - php
     networks:
@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile-php
     volumes:
-      - .:/var/www/html
+      - ./src:/var/www/html
     networks:
       - app-network
 

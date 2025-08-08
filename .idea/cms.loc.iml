@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/engine" isTestSource="false" packagePrefix="Engine\" />
       <sourceFolder url="file://$MODULE_DIR$/engine/DI" isTestSource="false" packagePrefix="Engine\DI\" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Vokintos\Projectcms\" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
     </content>
     <orderEntry type="inheritedJdk" />
