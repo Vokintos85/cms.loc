@@ -49,21 +49,38 @@ class UrlDispatcher
         return isset($this->routes[$method]) ? $this->routes[$method] : [];
     }
 
+    public function register($method, $pattern, $controller)
+    {
+        $this->routes [strtoupper($method)][$pattern] = $controller;
+    }
+
+    /**
+     * @param $method
+     * @param $uri
+     * @return DispatchedRoute|null
+     */
     public function dispatch($method, $uri)
     {
         $routes = $this->routes(strtoupper($method));
 
         if (array_key_exists($uri, $routes))
         {
-            return new DispatchedRote($routes, [$uri]);
+            return new DispatchedRoute($routes, [$uri]);
         }
+
+        return $this->doDispatch($method, $uri);
     }
 
     private function doDispatch($method, $uri)
     {
         foreach ($this->routes($method) as $route => $controller)
         {
-            print $route;
+            $pattern = '#^' . '$#s';
+
+            if (preg_match($pattern, $uri, $parameters))
+            {
+                return new DispatchedRote($controller, $parameters);
+            }
         }
 
     }

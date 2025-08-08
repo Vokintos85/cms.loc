@@ -1,5 +1,8 @@
 <?php
 namespace Engine;
+
+use Engine\Helper\Common;
+
 class Cms
 {
     /**
@@ -24,11 +27,14 @@ class Cms
      */
     public function run()
     {
-        //$this->router->add('home', '/', 'HomeController:Index');
-        //$this->router->add('product', '/product/id', 'ProductController:Index');
+        $this->router->add('home', '/', 'HomeController:Index');
+        $this->router->add('product', '/user/12', 'ProductController:Index');
 
-        //$routerDispatch = $this->router->dispatch('GET', );
+        $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPatchUrl());
         //print_r($this->di);
-        print_r($_SERVER);
+
+        //print_r($_SERVER);
+        print_r($routerDispatch);
+
     }
 }
