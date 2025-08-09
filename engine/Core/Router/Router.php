@@ -13,14 +13,14 @@ class Router
      */
    public function __construct($host)
    {
-       $this->$host = $host;
+       $this->host = $host;
    }
 
    public function add($key, $pattern, $controller, $method = 'GET'): void
    {
        $this->routes[$key] = [
                'pattern'    => $pattern,
-               'controller' => $method,
+               'controller' => $controller,
                'method'     => $method
 
        ];

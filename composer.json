@@ -5,6 +5,7 @@
         "psr-4": {
             "Vokintos\\Projectcms\\": "src/",
             "Engine\\": "engine",
+            "Cms\\": "cms",
             "Engine\\DI\\": "engine/DI"
         }
     },

@@ -29,17 +29,20 @@ class Cms
     /**
      * Run cms
      */
-    public function run()
+    public function run(): void
     {
         $this->router->add('home', '/', 'HomeController:Index');
-        $this->router->add('product', '/user/12', 'ProductController:Index');
+        $this->router->add('news', '/news', 'HomeController:news');
 
-        $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPatchUrl());
+        $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 
-        //print_r($this->di);
+        list($class, $action) = explode(':', $routerDispatch->getController(), 2);
+
+        $controller = '\\Cms\\Controller\\' .  $class;
+        call_user_func_array([new $controller($this->di), $action], $routerDispatch->getParameters());
 
         //print_r($_SERVER);
-        print_r($routerDispatch);
+       // print_r($routerDispatch);
 
     }
 }
