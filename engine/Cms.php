@@ -31,18 +31,32 @@ class Cms
      */
     public function run(): void
     {
-        $this->router->add('home', '/', 'HomeController:Index');
+        $this->router->add('home', '/', 'HomeController:index'); // исправлен регистр
         $this->router->add('news', '/news', 'HomeController:news');
+        $this->router->add('news_single', '/news/(id:int)', 'HomeController:news');
 
         $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 
+        if (!$routerDispatch) {
+            header("HTTP/1.0 404 Not Found");
+            echo "404 Page Not Found";
+            return;
+        }
+
         list($class, $action) = explode(':', $routerDispatch->getController(), 2);
+        $controller = '\\Cms\\Controller\\' . $class;
 
-        $controller = '\\Cms\\Controller\\' .  $class;
-        call_user_func_array([new $controller($this->di), $action], $routerDispatch->getParameters());
+        if (!class_exists($controller)) {
+            throw new \RuntimeException("Controller {$controller} not found");
+        }
 
-        //print_r($_SERVER);
-       // print_r($routerDispatch);
+        if (!method_exists($controller, $action)) {
+            throw new \RuntimeException("Method {$action} not found in {$controller}");
+        }
 
+        call_user_func_array(
+                [new $controller($this->di), $action],
+                $routerDispatch->getParameters()
+        );
     }
 }
