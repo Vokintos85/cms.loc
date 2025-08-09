@@ -25,7 +25,7 @@ class Common
     /**
      * @return false|int
      */
-    public static function getPatchUrl()
+    public static function getPathUrl()
     {
         $patchUrl = $_SERVER['REQUEST_URI']; // Получаем полный URL
 

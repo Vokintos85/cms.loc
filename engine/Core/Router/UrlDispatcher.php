@@ -102,7 +102,6 @@ class UrlDispatcher
     {
         foreach($this->routes($method) as $route => $controller)
         {
-            var_dump($route);
             $pattern = '#^' . $route . '$#s';
 
             if(preg_match($pattern, $uri, $parameters))
