@@ -31,10 +31,7 @@ class Cms
      */
     public function run(): void
     {
-        $this->router->add('home', '/', 'HomeController:index'); // исправлен регистр
-        $this->router->add('news', '/news', 'HomeController:news');
-        $this->router->add('news_single', '/news/(id:int)', 'HomeController:news');
-        $this->router->add('about', '/about', 'AboutController:index');
+       require_once __DIR__ . '/../cms/Route.php';
 
         $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
 

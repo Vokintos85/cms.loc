@@ -6,15 +6,17 @@ class HomeController extends CmsController
 {
     public function index(): void
     {
-        echo 'Index Page';
+        $data = ['name' => 'Sergey'];
+        $this->view->__render('index', $data);
+
     }
 
     public function news($id = null): void
     {
         if ($id) {
-            echo "Новость #" . $id;
+           // echo "Новость #" . $id;
         } else {
-            echo "Список всех новостей";
+           // echo "Список всех новостей";
         }
     }
 }
