@@ -1,17 +1,18 @@
 {
-    "version": "1.0.0",
-    "name": "vokintos/projectcms",
-    "autoload": {
-        "psr-4": {
-            "Engine\\": "engine",
-            "Cms\\": "cms"
-        }
-    },
-    "authors": [
-        {
-            "name": "Sergey",
-            "email": "gizya_85@mail.ru"
-        }
-    ],
-    "require": {}
+  "version": "1.0.0",
+  "name": "vokintos/projectcms",
+  "autoload": {
+    "psr-4": {
+      "Engine\\": "engine",
+      "Cms\\": "cms",
+      "Admin\\": "admin"
+    }
+  },
+  "authors": [
+    {
+      "name": "Sergey",
+      "email": "gizya_85@mail.ru"
+    }
+  ],
+  "require": {}
 }
