@@ -2,10 +2,12 @@
 
 namespace Admin\Controller;
 
-class LoginController
+use Engine\Controller;
+
+class LoginController extends Controller
 {
     public function form(): void
     {
-        echo 'form';
+        $this->view->render('login');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Engine;
 
+use Engine\Core\Template\View;
 use Engine\DI\DI;
 
 abstract class Controller
@@ -13,7 +14,7 @@ abstract class Controller
 
     protected $db;
 
-    protected $view;
+    protected View $view;
 
     /**
      * @param DI $di
