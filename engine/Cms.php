@@ -2,9 +2,9 @@
 
 namespace Engine;
 
-use Engine\Core\Router\Router;
 use Engine\DI\DI;
 use Engine\Helper\Common;
+use Engine\Helper\Router\Router;
 
 class Cms
 {

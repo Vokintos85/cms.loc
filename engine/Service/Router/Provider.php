@@ -2,8 +2,8 @@
 
 namespace Engine\Service\Router;
 
+use Engine\Helper\Router\Router;
 use Engine\Service\AbstractProvider;
-use Engine\Core\Router\Router;
 
 class Provider extends AbstractProvider
 {

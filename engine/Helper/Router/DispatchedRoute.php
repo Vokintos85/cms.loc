@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\Core\Router;
+namespace Engine\Helper\Router;
 
 class DispatchedRoute
 {

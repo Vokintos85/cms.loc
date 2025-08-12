@@ -4,7 +4,7 @@ namespace Admin\Controller;
 
 use Engine\Controller;
 
-class Admincontroller extends Controller
+class AdminController extends Controller
 {
     /**
      * @param $di
