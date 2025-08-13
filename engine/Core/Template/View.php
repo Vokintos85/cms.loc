@@ -42,15 +42,12 @@ class View
             echo ob_get_clean();
     }
 
-    private function getTemplatePath($template, $env = null): string
+    private function getTemplatePath(string $template, ?string $env = null): string
     {
-        switch ($env) {
-            case 'Admin':
-                return ROOT_DIR_ . '/View/' . $template . '.php';
-            case 'Cms':
-                return  ROOT_DIR_ . '/content/themes/default/' . $template . '.php';
-            default:
-                return ROOT_DIR_ . '/' . mb_strtolower($env) . '/View/' . $template . '.php';
-        }
+        $basePath = $env === 'Cms'
+            ? '/content/themes/default/'
+            : '/View/';
+
+        return ROOT_DIR_ . $basePath . $template . '.php';
     }
 }

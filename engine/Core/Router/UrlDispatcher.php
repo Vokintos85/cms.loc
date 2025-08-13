@@ -1,5 +1,5 @@
 <?php
-namespace Engine\Helper\Router;
+namespace Engine\Core\Router;
 
 class UrlDispatcher
 {

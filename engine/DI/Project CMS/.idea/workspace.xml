@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb368357-5202-4e8b-865d-dd0e75e259cc" name="Changes" comment="Создаnm CMS на php (Подключbnm первые шаблоны в Admin панель)">
+      <change afterPath="$PROJECT_DIR$/engine/Service/Config/Provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Config/service.php" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Config/service.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/Core/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/engine/Core/Config/Config.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="PHP File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vokintos85&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Vokintos85/cms.loc.git&quot;,
+    &quot;accountId&quot;: &quot;2714d23c-e950-4b41-b479-304b572f8c4a&quot;
+  }
+}</component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="Ubuntu">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="30rVgTmODnCxS2wYfeTwV63OyHs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-PHP-CGI Server&quot;: &quot;PHP-CGI server&quot;,
+    &quot;Notification.DoNotAsk-PHP-CGI Server&quot;: &quot;true&quot;,
+    &quot;PHP Script.Cms.php.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpCreateRemoteSdkForm&quot;: &quot;WSL&quot;,
+    &quot;credentialsType com.jetbrains.php.remote.interpreter.ui.PhpInplaceEditRemoteSdkForm&quot;: &quot;WSL&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu/home/vokintos/projects/Project CMS/admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.override.implement.member.chooser.php.doc&quot;: &quot;NONE&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.webide.settings.project.settings.php&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
+    <layout>
+      <window_info id="Bookmarks" side_tool="true" />
+      <window_info id="Merge Requests" />
+      <window_info id="Backup and Sync History" />
+      <window_info id="Commit_Guest" show_stripe_button="false" />
+      <window_info id="Pull Requests" />
+      <window_info id="Robo tasks" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15827067" />
+      <window_info id="Commit" order="1" weight="0.32969925" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="File Transfer" />
+      <window_info anchor="bottom" id="Find" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.33014706" />
+      <window_info anchor="bottom" id="Problems" order="1" />
+      <window_info anchor="bottom" id="Problems View" order="2" weight="0.33014706" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.33014706" />
+      <window_info anchor="bottom" id="Services" order="4" weight="0.33014706" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.33014706" />
+      <window_info anchor="right" id="make" side_tool="true" />
+      <window_info anchor="right" id="documentation.v2" show_stripe_button="false" side_tool="true" />
+      <window_info anchor="right" id="Coverage" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
+      <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
+      <window_info anchor="right" id="Database" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu\home\vokintos\projects\Project CMS\admin" />
+      <recent name="\\wsl.localhost\Ubuntu\home\vokintos\projects\Project CMS" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/engine/Core" />
+      <recent name="$PROJECT_DIR$/engine" />
+      <recent name="\\wsl.localhost\Ubuntu\home\vokintos\projects\Project CMS" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Cms.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/engine/Cms.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.Cms.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PS-251.26094.133" />
+        <option value="bundled-php-predefined-a98d8de5180a-c5828cf854d9-com.jetbrains.php.sharedIndexes-PS-251.26094.133" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb368357-5202-4e8b-865d-dd0e75e259cc" name="Changes" comment="" />
+      <created>1754385789837</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754385789837</updated>
+      <workItem from="1754385791213" duration="16449000" />
+      <workItem from="1754409531069" duration="670000" />
+      <workItem from="1754410360286" duration="1961000" />
+      <workItem from="1754412624887" duration="2911000" />
+      <workItem from="1754472053529" duration="14647000" />
+      <workItem from="1754558579317" duration="16800000" />
+      <workItem from="1754653604532" duration="12362000" />
+      <workItem from="1754735895568" duration="266000" />
+      <workItem from="1754736201123" duration="7065000" />
+      <workItem from="1754743380298" duration="3229000" />
+      <workItem from="1754747487335" duration="5548000" />
+      <workItem from="1754818306870" duration="17636000" />
+      <workItem from="1754908369310" duration="11399000" />
+      <workItem from="1754997931856" duration="769000" />
+      <workItem from="1754999457684" duration="91000" />
+      <workItem from="1755003143996" duration="636000" />
+      <workItem from="1755008844946" duration="191000" />
+      <workItem from="1755013427284" duration="9092000" />
+    </task>
+    <task id="LOCAL-00001" summary="Внедрение и настройка Router,Service.">
+      <option name="closed" value="true" />
+      <created>1754479133824</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1754479133824</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Внедрение и настройка Docker,Nginx,PHP-FP">
+      <option name="closed" value="true" />
+      <created>1754559371378</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1754559371378</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Внедрение и настройка Docker,Nginx,PHP-FP">
+      <option name="closed" value="true" />
+      <created>1754576938428</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1754576938428</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Дописывал Router.Сломал docker-compose.yml и nginx.conf">
+      <option name="closed" value="true" />
+      <created>1754577031748</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1754577031748</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Дописать Router.Выяснить проблему с выводом в браузер Cms.php.">
+      <option name="closed" value="true" />
+      <created>1754667201583</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754667201584</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Дописать Router.Выяснить проблему с выводом в браузер Cms.php.">
+      <option name="closed" value="true" />
+      <created>1754743749415</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754743749415</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Дописать Router.Выяснить проблему с выводом в браузер Cms.php.">
+      <option name="closed" value="true" />
+      <created>1754750646283</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1754750646283</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Дописать Router.Выяснить проблему с выводом в браузер Cms.php.">
+      <option name="closed" value="true" />
+      <created>1754751690287</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754751690287</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Написать View,написать Theme.">
+      <option name="closed" value="true" />
+      <created>1754841608164</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1754841608164</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Создаnm CMS на php (Подключbnm первые шаблоны в Admin панель)">
+      <option name="closed" value="true" />
+      <created>1755018485048</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1755018485049</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Внедрение и настройка Router,Service." />
+    <MESSAGE value="Дописывал Router.Сломал Docker,Nginx.Требуется перенастройка." />
+    <MESSAGE value="Внедрение и настройка Docker,Nginx,PHP-FP" />
+    <MESSAGE value="Дописывал Router.Сломал docker-compose.yml и nginx.conf" />
+    <MESSAGE value="Дописать Router.Выяснить проблему с выводом в браузер Cms.php." />
+    <MESSAGE value="Написать View,написать Theme." />
+    <MESSAGE value="Создаnm CMS на php (Подключbnm первые шаблоны в Admin панель)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создаnm CMS на php (Подключbnm первые шаблоны в Admin панель)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
