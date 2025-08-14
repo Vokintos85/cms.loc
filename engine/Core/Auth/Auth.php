@@ -2,47 +2,39 @@
 
 namespace Engine\Core\Auth;
 
-use Engine\Core\Cookie;
+use Engine\Helper\Cookie;
+
 class Auth implements AuthInterface
 {
-    protected $authorized = false;
+    public $authorized = false;
     protected $user;
 
-    /**
-     * @return mixed
-     */
     public function authorized()
     {
         return $this->authorized;
     }
 
-    /**
-     * @return mixed
-     */
     public function user()
     {
         return $this->user;
     }
 
-    /**
-     * @param $user
-     * @return void
-     */
-    public function autorize($user)
+    public function authorize($user)
     {
         Cookie::set('auth.authorized', true);
         Cookie::set('auth.user', $user);
 
         $this->authorized = true;
-        $this->user       = $user;
+        $this->user = $user;
     }
+
     public function unAuthorize()
     {
-        Cookie::delet('auth.authorized');
-        Cookie::delet('auth.user');
+        Cookie::delete('auth.authorized');
+        Cookie::delete('auth.user');
 
         $this->authorized = false;
-        $this->user       = null;
+        $this->user = null;
     }
 
     public static function salt()
@@ -50,8 +42,8 @@ class Auth implements AuthInterface
         return (string) rand(1000000, 9999999);
     }
 
-    public static function ancryptPassword($password, $salt = '')
+    public static function encryptPassword($password, $salt = '')
     {
-        return hash('sha 256', $password . $salt);
+        return hash('sha256', $password . $salt);
     }
 }

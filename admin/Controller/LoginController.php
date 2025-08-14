@@ -2,9 +2,8 @@
 
 namespace Admin\Controller;
 
-use Engine\Controller;
 
-class LoginController extends Controller
+class LoginController extends AdminController
 {
     public function form(): void
     {
