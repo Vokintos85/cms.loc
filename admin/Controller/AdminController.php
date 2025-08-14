@@ -17,12 +17,19 @@ class AdminController extends Controller
 
         $this->auth = new Auth();
 
-        if (!$this->auth->authorized and $_SERVER['REQUEST_URI'] !== '/admin/login'){
-             // redirect
-             header('Location: /admin/login', true, 301);
+        $this->checAutorization();
+    }
+
+    /**
+     * @return void
+     */
+    public function checAutorization()
+    {
+        if (!$this->auth->authorized ()){
+            // redirect
+            header('Location: /admin/login', true, 301);
             exit;
         }
-
     }
 
 }
