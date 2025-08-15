@@ -13,7 +13,7 @@ php -S 127.0.0.1:9000
 docker run --rm \
   --name cms.loc \
   -e MYSQL_DATABASE=cms \
-  -e MYSQL_USER=cms \
+  -e MYSQL_USER=dcms \
   -e MYSQL_PASSWORD=cms \
   -e MYSQL_ROOT_PASSWORD=cms \
   -v mysql-test-data:/var/lib/mysql \

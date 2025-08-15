@@ -16,5 +16,5 @@ interface AuthInterface
 
     public static function salt();
 
-    public static function encryptPassword($password, $salt = '');
+    public static function encryptPassword(string $password, string $salt = ''): string;
 }

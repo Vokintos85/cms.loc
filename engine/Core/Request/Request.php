@@ -16,7 +16,7 @@ class Request
 
     public $server = [];
 
-    public function construct()
+    public function __construct()
     {
         $this->get     = $_GET;
         $this->post    = $_POST;
@@ -24,7 +24,5 @@ class Request
         $this->files   = $_FILES;
         $this->cookie  = $_COOKIE;
         $this->server  = $_SERVER;
-
     }
-
 }

@@ -14,9 +14,7 @@ class Provider extends AbstractProvider
      */
     public function init(): void
     {
-        $request = new Request();
-
-        $this->di->set($this->serviceName, $request);
+        $this->di->set($this->serviceName, new Request());
     }
 }
 

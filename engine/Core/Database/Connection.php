@@ -1,53 +1,47 @@
 <?php
 
 namespace Engine\Core\Database;
-use \PDO;
-use Engine\Core\Config\Config;
+
+use PDO;
+use PDOException;
 
 class Connection
 {
-    private $link;
+    private $pdo;
 
-    public function __construct()
+    public function __construct(array $config)
     {
-        $this->connect();
-    }
-
-    private function connect()
-    {
-        $config = Config::file('database');
-
-
-        $dsn = 'mysql:host='.$config['host'].';port='.$config['port'].';dbname='.$config['db_name'].';charset='.$config['charset'];
-
-        try {
-            $this->link = new PDO($dsn, $config['username'], $config['password'], [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES => false,
-            ]);
-        } catch (PDOException $e) {
-            die('Database connection failed: ' . $e->getMessage());
+        if (empty($config['host'])) {
+            throw new \InvalidArgumentException('Database host not configured');
         }
 
-        return $this;
+        try {
+            $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']};charset={$config['charset']}";
+
+            $this->pdo = new PDO(
+                $dsn,
+                $config['username'],
+                $config['password'],
+                $config['options'] ?? []
+            );
+
+            // Тестовый запрос для проверки
+            $this->pdo->query('SELECT 1')->execute();
+
+        } catch (PDOException $e) {
+            throw new \RuntimeException(sprintf(
+                'DB Connection Error: %s [%s@%s]',
+                $e->getMessage(),
+                $config['username'],
+                $config['host']
+            ));
+        }
     }
 
-    public function execute($sql, $params = [])
+    public function query(string $sql, array $params = [])
     {
-        $sth = $this->link->prepare($sql);
-        return $sth->execute($params);
-    }
-
-    public function query($sql, $params = [])
-    {
-        $sth = $this->link->prepare($sql);
-        $sth->execute($params);
-        return $sth->fetchAll(PDO::FETCH_ASSOC) ?: [];
-    }
-
-    public function lastInsertId()
-    {
-        return $this->link->lastInsertId();
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt;
     }
 }
