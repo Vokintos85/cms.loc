@@ -5,50 +5,54 @@ namespace Engine\Core\Config;
 class Config
 {
     /**
-     * @param $key
-     * @param $group
+     *  Получить элемент из конфигурации
+     *
+     * @param string $key
+     * @param string $group
      * @return mixed|null
      * @throws \Exception
      */
-    public static function item($key, $group = 'main')
+    public static function item(string $key, string $group = 'main')
     {
         $groupItems = static::file($group);
 
-        return isset($groupItems[$key]) ? $groupItems[$key] : null;
+        return $groupItems[$key] ?? null;
     }
 
     /**
-     * @param $group
+     * Получить всю группу конфигурации
+     *
+     * @param string $group
      * @return array
      * @throws \Exception
      */
-    public static function file($group)
+    public static function file(string $group): array
     {
-        $path = $_SERVER['DOCUMENT_ROOT'] . '/' . mb_strtolower(ENV) . '/Config/' . $group . '.php';
+        $path = self::getConfigFilePath($group);
 
-        if (file_exists($path))
-        {
-            $items = require_once $path;
-
-            if (!empty($items))
-            {
-                return $items;
-            } else
-            {
-                throw new \Exception(
-                    sprintf(
-                        'Config file <strong>%s</strong> is not a valid array.', $path
-                    )
-                );
-            }
-
-        } else
-        {
-            throw new \Exception(
-                sprintf('Connot load config from file, file <strong>%s</strong> does not exist', $path)
-            );
+        if (!file_exists($path)) {
+            throw new \Exception(sprintf('Cannot load config from file, file <strong>%s</strong> does not exist.', $path));
         }
 
-        return false;
+        $items = require_once $path;
+
+        if (empty($items) || !is_array($items)) {
+            throw new \Exception(sprintf('Config file <strong>%s</strong> is not a valid array.', $path));
+        }
+
+        return $items;
     }
+
+    /**
+     * Построить путь до файла конфигурации
+     *
+     * @param string $group
+     * @return string
+     */
+    private static function getConfigFilePath(string $group): string
+    {
+        return $_SERVER['DOCUMENT_ROOT'] . '/' . mb_strtolower(ENV) . '/Config/' . $group . '.php';
+    }
+
+
 }
