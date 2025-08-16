@@ -1,5 +1,5 @@
 <?php
-define('ROOT_DIR_', __DIR__);
+define('ROOT_DIR', __DIR__);
 // Подключаем автозагрузчик Composer
 require __DIR__ . '/vendor/autoload.php';
 

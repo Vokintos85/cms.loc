@@ -48,6 +48,6 @@ class View
             ? '/content/themes/default/'
             : '/View/';
 
-        return ROOT_DIR_ . $basePath . $template . '.php';
+        return ROOT_DIR . $basePath . $template . '.php';
     }
 }
