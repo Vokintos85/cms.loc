@@ -3,51 +3,40 @@
 namespace Admin\Controller;
 
 use Engine\Controller;
-use Engine\DI\DI;
 use Engine\Core\Auth\Auth;
+use Engine\DI\DI;
+use Engine\Core\Database\QueryBuilder;
 
 class LoginController extends Controller
 {
-    protected $auth;
-    /**
-     * @param DI $dI
-     */
-    public function __construct(DI $dI)
-    {
-        parent::__construct($dI);
+    protected Auth $auth;
 
-        $this->auth = new Auth();
+    public function __construct(DI $di)
+    {
+        parent::__construct($di);
+        $this->auth = $di->get('auth');
     }
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
     public function form(): void
     {
-        $this->auth->authorize('sjdjsdsdsd');
-
-        if ($this->auth->authorized())
-        {
-            print_r($_COOKIE);
-        }
-
         $this->view->render('login');
     }
 
-    /**
-     * @return void
-     */
     public function authAdmin(): void
     {
         try {
             $params = $this->request->post;
 
-            // Усиленная валидация
-            if (empty($params['email']) || empty($params['password'])) {
-                throw new \Exception('Email и пароль обязательны');
+            // Валидация
+            if (empty($params['email'])) {
+                throw new \Exception('Email обязателен');
             }
 
+            if (empty($params['password'])) {
+                throw new \Exception('Пароль обязателен');
+            }
+
+            // Поиск пользователя
             $user = $this->db->query(
                 "SELECT * FROM `user` WHERE email = ? LIMIT 1",
                 [$params['email']]
@@ -57,26 +46,27 @@ class LoginController extends Controller
                 throw new \Exception('Пользователь не найден');
             }
 
-            // Проверка пароля (рекомендую перейти на password_hash())
-            if (md5($params['password']) !== $user['password']) {
+            // Проверка пароля (рекомендуется использовать password_verify)
+            if (!password_verify($params['password'], $user['password'])) {
                 throw new \Exception('Неверный пароль');
             }
 
-            // Авторизация с отладкой
+            // Обновление хеша (если нужно)
+            $hash = bin2hex(random_bytes(16));
+            $this->db->execute(
+                "UPDATE `user` SET `hash` = ? WHERE `id` = ?",
+                [$hash, $user['id']]
+            );
+
+            // Авторизация
             $this->auth->authorize($user['id']);
-            error_log('User authorized: ' . $user['id']);
 
-            // Проверка кук
-            error_log('Current cookies: ' . print_r($_COOKIE, true));
-
-            // Редирект с гарантированным выходом
-            header('Location: /admin/');
-            exit;
+            // Редирект
+            $this->redirect('/admin/');
 
         } catch (\Exception $e) {
             error_log('Auth error: ' . $e->getMessage());
-            header('Location: /admin/login/?error=' . urlencode($e->getMessage()));
-            exit;
+            $this->redirect('/admin/login/?error=' . urlencode($e->getMessage()));
         }
     }
 
@@ -85,5 +75,4 @@ class LoginController extends Controller
         header('Location: ' . $url, true, $statusCode);
         exit;
     }
-
 }

@@ -6,4 +6,5 @@ return [
     Engine\Service\View\Provider::class,
     Engine\Service\Config\Provider::class,
     Engine\Service\Request\Provider::class,
+    Engine\Service\Auth\Provider::class,
 ];

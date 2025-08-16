@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         parent::__construct($di);
         $this->auth = new Auth();
-        $this->checkAuthorization(); // Исправлено название метода
+        $this->checkAuthorization();
     }
 
     /**
@@ -30,7 +30,7 @@ class AdminController extends Controller
             error_log('Unauthorized access attempt from IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
 
             // Редирект на страницу входа
-            header('Location: /admin/login?error=not_authorized', true, 301);
+            header('Location: /admin/login?error=not_authorized');
             exit;
         }
     }
@@ -54,7 +54,7 @@ class AdminController extends Controller
         error_log('User logged out. ID: ' . ($_COOKIE['auth_user'] ?? 'unknown'));
 
         // Редирект на страницу входа с флагом выхода
-        header('Location: /admin/login?logout=success', true, 302);
+        header('Location: /admin/login?logout=success');
         exit;
     }
 }
