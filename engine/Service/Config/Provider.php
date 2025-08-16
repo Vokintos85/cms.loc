@@ -12,6 +12,9 @@ class Provider extends AbstractProvider
      */
     public $serviceName = 'config';
 
+    /**
+     * @throws \Exception
+     */
     public function init(): void
     {
         $config = [
