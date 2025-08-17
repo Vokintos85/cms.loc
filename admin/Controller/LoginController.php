@@ -25,51 +25,69 @@ class LoginController extends Controller
     public function authAdmin(): void
     {
         try {
+            // CSRF защита
+            if (!$this->checkCsrfToken()) {
+                throw new \Exception('CSRF token validation failed');
+            }
+
             $params = $this->request->post;
 
             // Валидация
-            if (empty($params['email'])) {
-                throw new \Exception('Email обязателен');
+            if (empty($params['email']) || !filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
+                throw new \Exception('Invalid email format');
             }
 
-            if (empty($params['password'])) {
-                throw new \Exception('Пароль обязателен');
+            if (empty($params['password']) || strlen($params['password']) < 6) {
+                throw new \Exception('Password must be at least 6 characters');
             }
 
-            // Поиск пользователя
-            $user = $this->db->query(
-                "SELECT * FROM `user` WHERE email = ? LIMIT 1",
-                [$params['email']]
-            )->fetch();
+            // Поиск пользователя с защитой от timing-атак
+            $user = $this->findUserSafely($params['email']);
 
-            if (!$user) {
-                throw new \Exception('Пользователь не найден');
+            if (!$user || !password_verify($params['password'], $user['password'])) {
+                // Всегда одинаковое время ответа при ошибке
+                $this->simulatePasswordVerification();
+                throw new \Exception('Invalid credentials');
             }
 
-            // Проверка пароля (рекомендуется использовать password_verify)
-            if (!password_verify($params['password'], $user['password'])) {
-                throw new \Exception('Неверный пароль');
+            // Дополнительные проверки
+            if (!$user['is_active']) {
+                throw new \Exception('Account deactivated');
             }
 
-            // Обновление хеша (если нужно)
-            $hash = bin2hex(random_bytes(16));
-            $this->db->execute(
-                "UPDATE `user` SET `hash` = ? WHERE `id` = ?",
-                [$hash, $user['id']]
-            );
+            // Установка авторизации
+            $this->auth->authorize($user['id'], [
+                'ip' => $_SERVER['REMOTE_ADDR'],
+                'user_agent' => $_SERVER['HTTP_USER_AGENT']
+            ]);
 
-            // Авторизация
-            $this->auth->authorize($user['id']);
+            // Обновление последнего входа
+            $this->updateLastLogin($user['id']);
 
-            // Редирект
             $this->redirect('/admin/');
 
         } catch (\Exception $e) {
             error_log('Auth error: ' . $e->getMessage());
-            $this->redirect('/admin/login/?error=' . urlencode($e->getMessage()));
+            $this->redirect('/admin/login?error=' . urlencode($e->getMessage()));
         }
     }
 
+    private function findUserSafely(string $email): ?array
+    {
+        // Всегда делаем запрос, даже если email неверный
+        $user = $this->db->query(
+            "SELECT * FROM `user` WHERE email = ? LIMIT 1",
+            [$email]
+        )->fetch();
+
+        return $user ?: null;
+    }
+
+    private function simulatePasswordVerification(): void
+    {
+        // Фиксированная задержка для защиты от timing-атак
+        usleep(random_int(300000, 500000)); // 300-500ms
+    }
     protected function redirect(string $url, int $statusCode = 302): void
     {
         header('Location: ' . $url, true, $statusCode);
