@@ -51,13 +51,12 @@ class Connection
     /**
      * Выполнение запроса с возвратом данных (SELECT)
      */
-    public function query(string $sql, array $params = []): array
+    public function query(string $sql, array $params = []): false|\PDOStatement
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
 
-        $result = $stmt->fetchAll();
-        return $result ?: [];
+        return $stmt;
     }
 
     /**

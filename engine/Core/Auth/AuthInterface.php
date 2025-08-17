@@ -10,7 +10,7 @@ interface AuthInterface
 
     public function user();
 
-    public function authorize($user);
+    public function authorize($userId);
 
     public function unAuthorize();
 

@@ -5,7 +5,6 @@ namespace Admin\Controller;
 use Engine\Controller;
 use Engine\Core\Auth\Auth;
 use Engine\DI\DI;
-use Engine\Core\Database\QueryBuilder;
 
 class LoginController extends Controller
 {
@@ -25,11 +24,6 @@ class LoginController extends Controller
     public function authAdmin(): void
     {
         try {
-            // CSRF защита
-            if (!$this->checkCsrfToken()) {
-                throw new \Exception('CSRF token validation failed');
-            }
-
             $params = $this->request->post;
 
             // Валидация
@@ -37,32 +31,21 @@ class LoginController extends Controller
                 throw new \Exception('Invalid email format');
             }
 
-            if (empty($params['password']) || strlen($params['password']) < 6) {
-                throw new \Exception('Password must be at least 6 characters');
+            if (empty($params['password'])) {
+                throw new \Exception('Password requered');
             }
 
             // Поиск пользователя с защитой от timing-атак
             $user = $this->findUserSafely($params['email']);
 
-            if (!$user || !password_verify($params['password'], $user['password'])) {
+            if (!$user || md5($params['password']) !== $user['password']) {
                 // Всегда одинаковое время ответа при ошибке
                 $this->simulatePasswordVerification();
                 throw new \Exception('Invalid credentials');
             }
 
-            // Дополнительные проверки
-            if (!$user['is_active']) {
-                throw new \Exception('Account deactivated');
-            }
-
             // Установка авторизации
-            $this->auth->authorize($user['id'], [
-                'ip' => $_SERVER['REMOTE_ADDR'],
-                'user_agent' => $_SERVER['HTTP_USER_AGENT']
-            ]);
-
-            // Обновление последнего входа
-            $this->updateLastLogin($user['id']);
+            $this->auth->authorize($user['id']);
 
             $this->redirect('/admin/');
 
@@ -88,6 +71,7 @@ class LoginController extends Controller
         // Фиксированная задержка для защиты от timing-атак
         usleep(random_int(300000, 500000)); // 300-500ms
     }
+
     protected function redirect(string $url, int $statusCode = 302): void
     {
         header('Location: ' . $url, true, $statusCode);
