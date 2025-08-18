@@ -22,6 +22,8 @@ abstract class Controller
     
     protected Request $request;
 
+    protected $load;
+
     /**
      * @param DI $di
      */
@@ -32,5 +34,6 @@ abstract class Controller
         $this->view    = $di->get('view');
         $this->config  = $di->get('config');
         $this->request = $di->get('request');
+        $this->load    = $di->get('load');
     }
 }
