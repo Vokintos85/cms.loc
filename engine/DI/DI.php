@@ -2,6 +2,8 @@
 
 namespace Engine\DI;
 
+use Engine\Expetion\ContainerException;
+
 class DI
 {
     /**
@@ -9,7 +11,7 @@ class DI
      *
      * @var array<string, mixed>
      */
-    private $container = [];
+    private array $container = [];
 
     /**
      * Adds a dependency to the container.
@@ -26,22 +28,13 @@ class DI
         return $this;
     }
 
-    /**
-     * @param $key
-     * @return mixed
-     */
-    public function get($key)
+    public function get(string $key)
     {
-        return $this->has($key);
+        return $this->container[$key] ?? throw new ContainerException("Объект $key отсутствует в контейнере.");
     }
 
-    /**
-     * @param $key
-     * @return bool
-     */
-    public function has($key)
+    public function has($key): bool
     {
-        return isset($this->container[$key]) ? $this->container [$key] : null;
+        return isset($this->container[$key]);
     }
-
 }
