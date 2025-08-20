@@ -49,8 +49,6 @@ class Auth implements AuthInterface
         Cookie::set('auth_authorized', '1', 0, '/', '', true, true);
         Cookie::set('auth_user', (string)$userId, 0, '/', '', true, true);
 
-        $this->authorized = true;
-        $this->user = $this->getUserById($userId);
     }
 
     /**
@@ -61,8 +59,6 @@ class Auth implements AuthInterface
         Cookie::delete('auth_authorized');
         Cookie::delete('auth_user');
 
-        $this->authorized = false;
-        $this->user = null;
     }
 
     /**

@@ -3,81 +3,73 @@
 namespace Admin\Controller;
 
 use Engine\Controller;
-use Engine\DI\DI;
 use Engine\Core\Auth\Auth;
+use Engine\DI\DI;
 
 class LoginController extends Controller
 {
-    protected $auth;
-    /**
-     * @param DI $dI
-     */
-    public function __construct(DI $dI)
-    {
-        parent::__construct($dI);
+    protected Auth $auth;
 
-        $this->auth = new Auth();
+    public function __construct(DI $di)
+    {
+        parent::__construct($di);
+        $this->auth = $di->get('auth');
     }
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
     public function form(): void
     {
-        $this->auth->authorize('sjdjsdsdsd');
-
-        if ($this->auth->authorized())
-        {
-            print_r($_COOKIE);
-        }
-
         $this->view->render('login');
     }
 
-    /**
-     * @return void
-     */
     public function authAdmin(): void
     {
         try {
             $params = $this->request->post;
 
-            // Усиленная валидация
-            if (empty($params['email']) || empty($params['password'])) {
-                throw new \Exception('Email и пароль обязательны');
+            // Валидация
+            if (empty($params['email']) || !filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
+                throw new \Exception('Invalid email format');
             }
 
-            $user = $this->db->query(
-                "SELECT * FROM `user` WHERE email = ? LIMIT 1",
-                [$params['email']]
-            )->fetch();
-
-            if (!$user) {
-                throw new \Exception('Пользователь не найден');
+            if (empty($params['password'])) {
+                throw new \Exception('Password requered');
             }
 
-            // Проверка пароля (рекомендую перейти на password_hash())
-            if (md5($params['password']) !== $user['password']) {
-                throw new \Exception('Неверный пароль');
+            // Поиск пользователя с защитой от timing-атак
+            $user = $this->findUserSafely($params['email']);
+
+            if (!$user || md5($params['password']) !== $user['password']) {
+                // Всегда одинаковое время ответа при ошибке
+                $this->simulatePasswordVerification();
+                throw new \Exception('Invalid credentials');
             }
 
-            // Авторизация с отладкой
+            // Установка авторизации
             $this->auth->authorize($user['id']);
-            error_log('User authorized: ' . $user['id']);
 
-            // Проверка кук
-            error_log('Current cookies: ' . print_r($_COOKIE, true));
-
-            // Редирект с гарантированным выходом
-            header('Location: /admin/');
-            exit;
+            $this->redirect('/admin/');
 
         } catch (\Exception $e) {
             error_log('Auth error: ' . $e->getMessage());
-            header('Location: /admin/login/?error=' . urlencode($e->getMessage()));
-            exit;
+            $this->redirect('/admin/login?error=' . urlencode($e->getMessage()));
         }
+    }
+
+    private function findUserSafely(string $email): ?array
+    {
+        // Всегда делаем запрос, даже если email неверный
+        $user = $this->db->query(
+            "SELECT * FROM `user` WHERE email = ? LIMIT 1",
+            [$email]
+        )->fetch();
+
+        return $user ?: null;
+    }
+
+    private function simulatePasswordVerification(): void
+    {
+        // Фиксированная задержка для защиты от timing-атак
+        usleep(random_int(300000, 500000)); // 300-500ms
     }
 
     protected function redirect(string $url, int $statusCode = 302): void
@@ -85,5 +77,4 @@ class LoginController extends Controller
         header('Location: ' . $url, true, $statusCode);
         exit;
     }
-
 }

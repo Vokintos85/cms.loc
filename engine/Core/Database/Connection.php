@@ -7,7 +7,7 @@ use PDOException;
 
 class Connection
 {
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct(array $config)
     {
@@ -22,11 +22,11 @@ class Connection
                 $dsn,
                 $config['username'],
                 $config['password'],
-                $config['options'] ?? []
+                $config['options'] ?? [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ]
             );
-
-            // Тестовый запрос для проверки
-            $this->pdo->query('SELECT 1')->execute();
 
         } catch (PDOException $e) {
             throw new \RuntimeException(sprintf(
@@ -38,10 +38,32 @@ class Connection
         }
     }
 
-    public function query(string $sql, array $params = [])
+    /**
+     * Выполнение запроса (INSERT, UPDATE, DELETE)
+     */
+    public function execute(string $sql, array $params = []): int
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
+        return $stmt->rowCount();
+    }
+
+    /**
+     * Выполнение запроса с возвратом данных (SELECT)
+     */
+    public function query(string $sql, array $params = []): false|\PDOStatement
+    {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+
         return $stmt;
+    }
+
+    /**
+     * Получение ID последней вставленной записи
+     */
+    public function lastInsertId(): string
+    {
+        return $this->pdo->lastInsertId();
     }
 }

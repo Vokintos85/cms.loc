@@ -2,6 +2,7 @@
 
 namespace Engine;
 
+use Engine\Core\Database\Connection;
 use Engine\Core\Request\Request;
 use Engine\Core\Template\View;
 use Engine\DI\DI;
@@ -13,13 +14,15 @@ abstract class Controller
      */
     protected $di;
 
-    protected $db;
+    protected Connection $db;
 
     protected View $view;
 
     protected array $config;
     
     protected Request $request;
+
+    protected $load;
 
     /**
      * @param DI $di
@@ -31,5 +34,6 @@ abstract class Controller
         $this->view    = $di->get('view');
         $this->config  = $di->get('config');
         $this->request = $di->get('request');
+        $this->load    = $di->get('load');
     }
 }
