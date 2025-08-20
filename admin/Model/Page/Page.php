@@ -4,7 +4,7 @@ namespace Admin\Model\Page;
 
 use Engine\Core\Database\ActiveRecord;
 
-class page
+class Page
 {
     use ActiveRecord;
 
@@ -82,4 +82,3 @@ class page
         $this->date = $date;
     }
 }
-

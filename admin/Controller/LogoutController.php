@@ -8,15 +8,12 @@ use Engine\DI\DI;
 
 class LogoutController extends Controller
 {
-    protected Auth $auth;
     /**
      * @param DI $di
      */
     public function __construct(DI $di)
     {
         parent::__construct($di);
-
-        $this->auth = $di->get('auth');
     }
 
     public function logout()

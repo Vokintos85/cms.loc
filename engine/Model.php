@@ -3,21 +3,18 @@
 namespace Engine;
 
 
+use Engine\Core\Database\Connection;
 use Engine\Core\Database\QueryBuilder;
 use Engine\DI\DI;
 
 abstract class Model
 {
-    /**
-     * @var DI
-     */
-    protected $di;
+    protected DI $di;
 
-    protected $db;
-
+    protected Connection $db;
     protected array $config;
 
-    public $queryBilder;
+    protected QueryBuilder $queryBilder;
 
 
     /**

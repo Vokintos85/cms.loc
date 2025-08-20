@@ -8,12 +8,22 @@ class PageRepository extends Model
 {
     public function getPages()
     {
-        $sql = $this->queryBuilder->select()
+        $sql = $this->queryBilder->select()
             ->from('page')
-            ->orderBy('id', 'DESC')
+            ->orderBy('id', 'ASC')
             ->sql();
 
         return $this->db->query($sql);
+    }
+
+    public function getPage($id)
+    {
+        $qb = $this->queryBilder
+            ->select()
+            ->from('page')
+            ->where('id', $id);
+
+        return $this->db->query($qb->sql(), $qb->params())->fetch();
     }
 
     public function test()

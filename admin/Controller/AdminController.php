@@ -3,11 +3,9 @@
 namespace Admin\Controller;
 
 use Engine\Controller;
-use Engine\Core\Auth\Auth;
 
 class AdminController extends Controller
 {
-    protected $auth;
 
     /**
      * @param mixed $di
@@ -15,7 +13,6 @@ class AdminController extends Controller
     public function __construct($di)
     {
         parent::__construct($di);
-        $this->auth = new Auth();
         $this->checkAuthorization();
     }
 

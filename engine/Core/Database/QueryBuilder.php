@@ -141,6 +141,11 @@ class QueryBuilder
         return $sql;
     }
 
+    public function params(): array
+    {
+        return $this->values;
+    }
+
     /**
      * Reset Builder
      */

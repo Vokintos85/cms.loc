@@ -2,7 +2,7 @@
 
 <main>
     <div class="container">
-        <h3>Pages</h3>
+        <h3 class="py-3">Pages <a href="/admin/pages/create">create page</a></h3>
 
         <table class="table">
             <thead>
@@ -13,11 +13,26 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
+
+            <?php foreach ($pages as $page) { ?>
+
+                <tr>
+                    <th scope="row">
+                        <?= $page['id'] ?>
+                    </th>
+                    <td>
+                        <?= $page['title'] ?>
+                    </td>
+                    <td>
+                        <?= $page['date'] ?>
+                    </td>
+                    <td>
+                        <a href="/admin/pages/<?= $page['id'] ?>">Edit</a>
+                    </td>
+                </tr>
+
+            <?php } ?>
+
             </tbody>
         </table>
     </div>

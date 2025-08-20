@@ -2,6 +2,7 @@
 
 namespace Engine;
 
+use Engine\Core\Auth\Auth;
 use Engine\Core\Database\Connection;
 use Engine\Core\Request\Request;
 use Engine\Core\Template\View;
@@ -22,7 +23,9 @@ abstract class Controller
     
     protected Request $request;
 
-    protected $load;
+    protected Load $load;
+
+    protected Auth $auth;
 
     /**
      * @param DI $di
@@ -35,5 +38,6 @@ abstract class Controller
         $this->config  = $di->get('config');
         $this->request = $di->get('request');
         $this->load    = $di->get('load');
+        $this->auth    = $di->get('auth');
     }
 }
