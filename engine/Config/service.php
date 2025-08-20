@@ -8,5 +8,4 @@ return [
     Engine\Service\Request\Provider::class,
     Engine\Service\Auth\Provider::class,
     Engine\Service\Load\Provider::class,
-
 ];

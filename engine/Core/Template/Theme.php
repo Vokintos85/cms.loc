@@ -17,8 +17,8 @@ class Theme
 
     public function __construct()
     {
-        $this->themePath = ROOT_DIR_ . '/View/';
-        $this->themeUrl = '/View/';
+        $this->themePath = ROOT_DIR_ . '/content/themes/default/';
+        $this->themeUrl = '/content/themes/default/';
     }
 
     /**

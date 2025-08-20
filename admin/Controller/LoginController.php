@@ -51,14 +51,17 @@ class LoginController extends Controller
 
         } catch (\Exception $e) {
             error_log('Auth error: ' . $e->getMessage());
-            $this->redirect('/admin/login');
+            $this->redirect('/admin/login?error=' . urlencode($e->getMessage()));
         }
     }
 
     private function findUserSafely(string $email): ?array
     {
-        $user = $this->db->query("SELECT * FROM `user` WHERE email = ? LIMIT 1", [$email])
-            ->fetch();
+        // Всегда делаем запрос, даже если email неверный
+        $user = $this->db->query(
+            "SELECT * FROM `user` WHERE email = ? LIMIT 1",
+            [$email]
+        )->fetch();
 
         return $user ?: null;
     }
