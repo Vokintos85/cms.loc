@@ -14,5 +14,8 @@
       "email": "gizya_85@mail.ru"
     }
   ],
-  "require": {"ext-pdo": "*"}
+  "require": {
+    "ext-mbstring": "*",
+    "ext-pdo": "*"
+  }
 }
