@@ -34,7 +34,7 @@ class PageController extends AdminController
 
     public function add()
     {
-        $params    = $this->request->post;
+        $params = $this->request->post;
 
         $pageModel = $this->load->model('Page');
 
@@ -45,7 +45,5 @@ class PageController extends AdminController
         }
 
         $pageModel->repository->createPage();
-
-        print_r($params);
     }
 }
