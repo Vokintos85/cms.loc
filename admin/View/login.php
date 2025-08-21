@@ -11,10 +11,10 @@
     <title>Login to CMS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/admin/Assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/admin/Assets/css/login.css" rel="stylesheet">
+    <link href="/assets/css/login.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -43,5 +43,6 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="/assets/js/bootstrap.js"></script>
 </body>
 </html>
