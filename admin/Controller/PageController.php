@@ -31,4 +31,21 @@ class PageController extends AdminController
             'content' => $pageData['content'],
         ]);
     }
+
+    public function add()
+    {
+        $params    = $this->request->post;
+
+        $pageModel = $this->load->model('Page');
+
+        if (isset($params['title'])){
+            $pageid = $pageModel->repository->createPage($params);
+
+            echo $pageid;
+        }
+
+        $pageModel->repository->createPage();
+
+        print_r($params);
+    }
 }

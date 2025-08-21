@@ -36,4 +36,18 @@ class PageRepository extends Model
         $user->save();
     }
 
+    /**
+     * @param $params
+     * @return string|null
+     */
+    public function createPage($params)
+    {
+        $page = new Page;
+        $page->setTitle($params['title']);
+        $page->setContent($params['content']);
+        $pageid = $page->save();
+
+        return $pageid;
+    }
+
 }
