@@ -4,7 +4,7 @@ namespace Engine\Core\Template;
 
 class Theme
 {
-    const TEMPLATE_RULES = [
+    private const TEMPLATE_RULES = [
             'header' => 'header-%s',
             'footer' => 'footer-%s',
             'sidebar' => 'sidebar-%s',
@@ -81,13 +81,13 @@ class Theme
 
         if (!file_exists($templateFile)) {
             throw new \RuntimeException(
-                    sprintf('Template file "%s" does not exist', $templateFile)
+                sprintf('Template file "%s" does not exist', $templateFile)
             );
         }
 
         if (!is_readable($templateFile)) {
             throw new \RuntimeException(
-                    sprintf('Template file "%s" is not readable', $templateFile)
+                sprintf('Template file "%s" is not readable', $templateFile)
             );
         }
 
@@ -96,9 +96,9 @@ class Theme
             include $templateFile;
         } catch (\Throwable $e) {
             throw new \RuntimeException(
-                    sprintf('Error rendering template "%s": %s', $name, $e->getMessage()),
-                    $e->getCode(),
-                    $e
+                sprintf('Error rendering template "%s": %s', $name, $e->getMessage()),
+                $e->getCode(),
+                $e
             );
         }
     }

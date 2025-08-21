@@ -28,7 +28,7 @@ class PageRepository extends Model
 
     public function test()
     {
-        $user = new User;
+        $user = new User();
         $user->setEmail('test@admin.com');
         $user->setPassword(md5(rand(1, 10)));
         $user->setRole('user');
@@ -36,4 +36,17 @@ class PageRepository extends Model
         $user->save();
     }
 
+    /**
+     * @param $params
+     * @return string|null
+     */
+    public function createPage($params)
+    {
+        $page = new Page();
+        $page->setTitle($params['title']);
+        $page->setContent($params['content']);
+        $pageid = $page->save();
+
+        return $pageid;
+    }
 }

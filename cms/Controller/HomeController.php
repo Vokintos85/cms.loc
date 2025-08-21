@@ -8,7 +8,6 @@ class HomeController extends CmsController
     {
         $data = ['name' => 'Sergey'];
         $this->view->render('index', $data);
-
     }
 
     public function news($id = null): void

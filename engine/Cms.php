@@ -97,8 +97,8 @@ class Cms
         }
 
         call_user_func_array(
-                [new $controller($this->di), $action],
-                $routerDispatch->getParameters()
+            [new $controller($this->di), $action],
+            $routerDispatch->getParameters()
         );
     }
 }

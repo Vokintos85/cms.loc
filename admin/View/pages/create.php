@@ -1,37 +1,39 @@
 <?php $this->theme->header(); ?>
 
-<main>
-    <div class="container">
-        <h3 class="py-3">Create a new page</h3>
-
-        <form>
-            <div class="form-group">
-                <label for="pageTitle">
-                    Title
-                </label>
-                <input type="text" class="form-control" id="pageTitle" aria-describedby="titleHelp" placeholder="Enter page title">
-                <small id="titleHelp" class="form-text text-muted">
-                    The title will be displayed as the page heading.
-                </small>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col page-title">
+                    <h3>Create page</h3>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="pageContent">Content</label>
-                <textarea class="form-control" id="pageContent" rows="6" placeholder="Write the content here"></textarea>
-                <small id="contentHelp" class="form-text text-muted">
-                    Add the main text or HTML for the page.
-                </small>
+            <div class="row">
+                <div class="col-9">
+                    <form id="formPage">
+                        <div class="form-group">
+                            <label for="formTitle">Title</label>
+                            <input type="text"
+                                   name="title"
+                                   class="form-control"
+                                   id="formTitle"
+                                   placeholder="Title page...">
+                        </div>
+                        <div class="form-group">
+                            <label for="formContent">Content</label>
+                            <textarea name="content" id="redactor" class="form-control" id="formContent"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-3">
+                    <div>
+                        <p>Publish this page</p>
+                        <button type="submit" class="btn btn-primary" onclick="page.add()">
+                            Publish
+                        </button>
+                    </div>
+                </div>
             </div>
-
-            <button type="submit" class="btn btn-primary">
-                Publish
-            </button>
-        </form>
-    </div>
-</main>
-
+        </div>
+    </main>
 
 <?php $this->theme->footer(); ?>
-
-
-

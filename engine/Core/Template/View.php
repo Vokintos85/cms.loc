@@ -24,20 +24,21 @@ class View
 
         if (!is_file($templatePath)) {
             throw new \InvalidArgumentException(
-                    sprintf('Template "%s" not found in "%s"', $template, $templatePath));
+                sprintf('Template "%s" not found in "%s"', $template, $templatePath)
+            );
         }
         $this->theme->setData($vars);
-        extract ($vars);
+        extract($vars);
 
             ob_start();
             ob_implicit_flush();
 
-            try{
-                require $templatePath;
-            }catch (\Exception $e){
-                ob_end_clean();
-                throw $e;
-            }
+        try {
+            require $templatePath;
+        } catch (\Exception $e) {
+            ob_end_clean();
+            throw $e;
+        }
 
             echo ob_get_clean();
     }

@@ -2,8 +2,8 @@
 
 namespace Engine\Core\Database;
 
-use \ReflectionClass;
-use \ReflectionProperty;
+use ReflectionClass;
+use ReflectionProperty;
 
 trait ActiveRecord
 {
@@ -44,7 +44,8 @@ trait ActiveRecord
     /**
      *  Save User
      */
-    public function save() {
+    public function save()
+    {
         $properties = $this->getIssetProperties();
 
         try {
@@ -64,6 +65,8 @@ trait ActiveRecord
                     $this->queryBuilder->values
                 );
             }
+
+            return $this->db->lastInsertId();
         } catch (\Exception $e) {
             echo $e->getMessage();
         }

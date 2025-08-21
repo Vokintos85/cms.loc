@@ -2,7 +2,6 @@
 
 namespace Engine;
 
-
 use Engine\Core\Database\Connection;
 use Engine\Core\Database\QueryBuilder;
 use Engine\DI\DI;

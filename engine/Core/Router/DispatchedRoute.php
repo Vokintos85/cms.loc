@@ -29,5 +29,4 @@ class DispatchedRoute
     {
         return $this->controller;
     }
-
 }

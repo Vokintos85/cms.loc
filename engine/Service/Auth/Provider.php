@@ -7,8 +7,7 @@ use Engine\Service\AbstractProvider;
 
 class Provider extends AbstractProvider
 {
-
-    function init(): void
+    public function init(): void
     {
         $this->di->set('auth', new Auth());
     }

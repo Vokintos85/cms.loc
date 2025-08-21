@@ -4,8 +4,8 @@ namespace Engine;
 
 class Load
 {
-    const string MASK_MODEL_ENTITY     = '\%s\Model\%s\%s';
-    const string MASK_MODEL_REPOSITORY = '\%s\Model\%s\%sRepository';
+    private const string MASK_MODEL_ENTITY     = '\%s\Model\%s\%s';
+    private const string MASK_MODEL_REPOSITORY = '\%s\Model\%s\%sRepository';
 
     /**
      * @param $modelName
@@ -22,12 +22,16 @@ class Load
 
         $namespaceEntity = sprintf(
             self::MASK_MODEL_ENTITY,
-            ENV, $modelDir, $modelName
+            ENV,
+            $modelDir,
+            $modelName
         );
 
         $namespaceRepository = sprintf(
             self::MASK_MODEL_REPOSITORY,
-            ENV, $modelDir, $modelName
+            ENV,
+            $modelDir,
+            $modelName
         );
 
         $model->entity     = $namespaceEntity;

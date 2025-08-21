@@ -31,7 +31,7 @@ class Config
         $path = self::getConfigFilePath($group);
 
         if (!file_exists($path)) {
-            throw new \Exception(sprintf('Cannot load config from file, file <strong>%s</strong> does not exist.', $path));
+            throw new \Exception(sprintf('Config file <strong>%s</strong> not found.', $path));
         }
 
         $items = require_once $path;
@@ -53,6 +53,4 @@ class Config
     {
         return $_SERVER['DOCUMENT_ROOT'] . '/' . mb_strtolower(ENV) . '/Config/' . $group . '.php';
     }
-
-
 }

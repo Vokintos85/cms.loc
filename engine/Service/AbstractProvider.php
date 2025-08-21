@@ -13,5 +13,5 @@ abstract class AbstractProvider
         $this->di = $di;
     }
 
-    abstract function init(): void;
+    abstract public function init(): void;
 }

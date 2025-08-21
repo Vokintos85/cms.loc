@@ -4,5 +4,4 @@ namespace Admin\Controller;
 
 class PostController
 {
-
 }

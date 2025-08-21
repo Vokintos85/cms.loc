@@ -10,13 +10,16 @@
     <title>Админ-панель</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/admin/Assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/assets/css/dashboard.css" rel="stylesheet">
+    <link href="/admin/Assets/css/dashboard.css" rel="stylesheet">
 
     <!-- simplelineicons for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+    <!-- Redactor CSS -->
+    <link rel="stylesheet" href="/admin/Assets/js/plugins/redactor/redactor.css">
 </head>
 
 <body>
@@ -35,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/pages">
+                        <a class="nav-link" href="/admin/pages/">
                             <i class="icon-doc icons"></i> Pages
                         </a>
                     </li>
@@ -53,7 +56,7 @@
             </div>
 
             <div class="right-toolbar">
-                <a href="/admin/logout">
+                <a href="/admin/logout/">
                     <i class="icon-logout icons"></i> Logout
                 </a>
             </div>

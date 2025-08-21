@@ -17,4 +17,3 @@ class Provider extends AbstractProvider
         $this->di->set($this->serviceName, new Request());
     }
 }
-

@@ -4,27 +4,27 @@ namespace Engine\Core\Router;
 
 class Router
 {
-   private $routes = [];
-   private $dispatcher;
-   private $host;
+    private $routes = [];
+    private $dispatcher;
+    private $host;
 
     /**
      * @param $host
      */
-   public function __construct($host)
-   {
-       $this->host = $host;
-   }
+    public function __construct($host)
+    {
+        $this->host = $host;
+    }
 
-   public function add($key, $pattern, $controller, $method = 'GET'): void
-   {
-       $this->routes[$key] = [
+    public function add($key, $pattern, $controller, $method = 'GET'): void
+    {
+        $this->routes[$key] = [
                'pattern'    => $pattern,
                'controller' => $controller,
                'method'     => $method
 
-       ];
-   }
+        ];
+    }
 
     public function dispatch($method, $uri): ?DispatchedRoute
     {
@@ -33,12 +33,10 @@ class Router
 
     public function getDispatcher()
     {
-        if ($this->dispatcher == null)
-        {
+        if ($this->dispatcher == null) {
             $this->dispatcher = new UrlDispatcher();
 
-            foreach ($this->routes as $route)
-            {
+            foreach ($this->routes as $route) {
                 $this->dispatcher->register($route['method'], $route['pattern'], $route['controller']);
             }
         }
@@ -46,4 +44,3 @@ class Router
         return $this->dispatcher;
     }
 }
-

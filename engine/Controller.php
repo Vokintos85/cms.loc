@@ -20,7 +20,7 @@ abstract class Controller
     protected View $view;
 
     protected array $config;
-    
+
     protected Request $request;
 
     protected Load $load;
