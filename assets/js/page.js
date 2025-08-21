@@ -8,7 +8,7 @@ var page = {
         formData.append('content', $('.redactor-editor').html());
 
         $.ajax({
-            url: '/admin/page/add/',
+            url: '/admin/page/add',
             type: this.ajaxMethod,
             data: formData,
             cache: false,

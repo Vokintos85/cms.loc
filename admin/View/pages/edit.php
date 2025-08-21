@@ -21,11 +21,8 @@
             </div>
 
             <div class="form-group">
-                <label for="pageContent">Content</label>
-                <textarea class="form-control"
-                          id="pageContent"
-                          rows="6"
-                          placeholder="Write the content here"><?= $content; ?></textarea>
+                <label for="redactor">Content</label>
+                <textarea name="content" id="redactor" class="form-control" id="formContent"><?= $content; ?></textarea>
                 <small id="contentHelp" class="form-text text-muted">
                     Add the main text or HTML for the page.
                 </small>

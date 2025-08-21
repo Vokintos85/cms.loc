@@ -17,6 +17,9 @@
 
     <!-- simplelineicons for this template -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+    <!-- Redactor CSS -->
+    <link rel="stylesheet" href="/assets/js/plugins/redactor/redactor.css">
 </head>
 
 <body>
