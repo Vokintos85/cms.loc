@@ -16,7 +16,13 @@ class Connection
         }
 
         try {
-            $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']};charset={$config['charset']}";
+            $host = $config['host'];
+            $port = $config['port'];
+            $dbname = $config['dbname'];
+            $charset = $config['charset'];
+
+            $dsn = "mysql:host={$host};port={$port};" .
+                "dbname={$dbname};charset={$charset}";
 
             $this->pdo = new PDO(
                 $dsn,
@@ -25,9 +31,8 @@ class Connection
                 $config['options'] ?? [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]
+                ]
             );
-
         } catch (PDOException $e) {
             throw new \RuntimeException(sprintf(
                 'DB Connection Error: %s [%s@%s]',

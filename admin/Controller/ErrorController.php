@@ -8,5 +8,4 @@ class ErrorController extends AdminController
     {
         echo '404 Page';
     }
-
 }

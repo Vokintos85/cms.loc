@@ -102,10 +102,10 @@ class QueryBuilder
     {
         $this->sql['set'] .= "SET ";
 
-        if(!empty($data)) {
+        if (!empty($data)) {
             foreach ($data as $key => $value) {
                 $this->sql['set'] .= "{$key} = ? ";
-                if (next($data)){
+                if (next($data)) {
                     $this->sql['set'] .= ", ";
                 }
                 $this->values[]    = $value;
@@ -122,7 +122,7 @@ class QueryBuilder
     {
         $sql = '';
 
-        if(!empty($this->sql)) {
+        if (!empty($this->sql)) {
             foreach ($this->sql as $key => $value) {
                 if ($key == 'where') {
                     $sql .= ' WHERE ';

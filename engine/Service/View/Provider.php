@@ -13,7 +13,7 @@ class Provider extends AbstractProvider
 
     public $serviceName = 'view';
 
-    public  function init(): void
+    public function init(): void
     {
         $view = new View();
 

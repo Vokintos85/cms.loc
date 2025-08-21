@@ -20,7 +20,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($pages as $page): ?>
+                <?php foreach ($pages as $page) : ?>
                     <tr>
                         <th scope="row">1</th>
                         <td><?= $page['title'] ?></td>

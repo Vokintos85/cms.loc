@@ -6,7 +6,6 @@ use Engine\Controller;
 
 class CmsController extends Controller
 {
-
     /**
      * @param $di
      */
@@ -17,9 +16,5 @@ class CmsController extends Controller
 
     public function header()
     {
-
     }
-
-
-
 }

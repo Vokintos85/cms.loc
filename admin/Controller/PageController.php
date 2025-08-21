@@ -38,7 +38,7 @@ class PageController extends AdminController
 
         $pageModel = $this->load->model('Page');
 
-        if (isset($params['title'])){
+        if (isset($params['title'])) {
             $pageid = $pageModel->repository->createPage($params);
 
             echo $pageid;

@@ -8,5 +8,4 @@ class ErrorController extends CmsController
     {
         echo '404 Page';
     }
-
 }

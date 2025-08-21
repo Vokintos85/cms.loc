@@ -44,7 +44,6 @@ class LoginController extends Controller
             $this->auth->authorize($user['id']);
 
             $this->redirect('/admin/');
-
         } catch (\Exception $e) {
             error_log('Auth error: ' . $e->getMessage());
             $this->redirect('/admin/login?error=' . urlencode($e->getMessage()));

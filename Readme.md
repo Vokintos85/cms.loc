@@ -21,3 +21,21 @@ docker run --rm \
   mysql:8
 
 ```
+
+## Установка и запуск
+```bash
+# Установите зависимости
+composer install
+
+# Запустите code style check
+composer cs-check
+
+# Исправьте code style
+composer cs-fix
+
+# Запустите тесты
+composer test
+
+# Запустите полную проверку качества
+composer quality
+```
