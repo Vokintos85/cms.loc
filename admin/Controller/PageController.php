@@ -15,8 +15,6 @@ class PageController extends AdminController
 
     public function create()
     {
-        $pageModel = $this->load->model('Page');
-
         $this->view->render('pages/create');
     }
 
