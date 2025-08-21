@@ -4,12 +4,12 @@
     <div class="container">
         <h3 class="py-3">Create a new page</h3>
 
-        <form>
+        <form id="formPage">
             <div class="form-group">
-                <label for="pageTitle">
+                <label for="formTitle">
                     Title
                 </label>
-                <input type="text" class="form-control" id="pageTitle" aria-describedby="titleHelp" placeholder="Enter page title">
+                <input type="text" class="form-control" id="formTitle" aria-describedby="titleHelp" placeholder="Enter page title">
                 <small id="titleHelp" class="form-text text-muted">
                     The title will be displayed as the page heading.
                 </small>
@@ -22,11 +22,11 @@
                     Add the main text or HTML for the page.
                 </small>
             </div>
-
-            <button type="submit" class="btn btn-primary">
-                Publish
-            </button>
         </form>
+
+        <button type="submit" class="btn btn-primary" onclick="page.add()">
+            Publish
+        </button>
     </div>
 </main>
 
