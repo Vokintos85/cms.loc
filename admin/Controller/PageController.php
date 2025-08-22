@@ -36,12 +36,19 @@ class PageController extends AdminController
 
         $pageModel = $this->load->model('Page');
 
-        if (isset($params['title'])) {
-            $pageid = $pageModel->repository->createPage($params);
-
-            echo $pageid;
+        // Проверяем, есть ли данные для создания страницы
+        if (isset($params['title']) && !empty($params['title'])) {
+            try {
+                $pageid = $pageModel->repository->createPage($params);
+                echo $pageid;
+                // Здесь обычно делаем редирект или возвращаем JSON ответ
+            } catch (\Exception $e) {
+                // Обработка ошибки
+                echo "Error: " . $e->getMessage();
+            }
+        } else {
+            // Если это GET запрос или форма не отправлена, показываем форму
+            $this->view->render('pages/create'); // Исправил на pages/create
         }
-
-        $pageModel->repository->createPage();
     }
 }

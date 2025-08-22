@@ -14,11 +14,12 @@
             </thead>
             <tbody>
 
+            <?php $index = 1; ?>
             <?php foreach ($pages as $page) { ?>
 
                 <tr>
                     <th scope="row">
-                        <?= $page['id'] ?>
+                        <?= $index++; ?>
                     </th>
                     <td>
                         <?= $page['title'] ?>
