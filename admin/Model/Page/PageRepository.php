@@ -49,4 +49,25 @@ class PageRepository extends Model
 
         return $pageid;
     }
+
+    public function updatePage($pageId, $data)
+    {
+        try {
+            // Простой SQL запрос без QueryBuilder
+            $sql = "UPDATE page SET title = :title, content = :content, date = :date WHERE id = :id";
+
+            $result = $this->db->execute($sql, [
+                'title' => $data['title'],
+                'content' => $data['content'] ?? '',
+                'date' => date('Y-m-d H:i:s'),
+                'id' => $pageId
+            ]);
+
+            return $result !== false;
+
+        } catch (\Exception $e) {
+            error_log('Update page error: ' . $e->getMessage());
+            return false;
+        }
+    }
 }
