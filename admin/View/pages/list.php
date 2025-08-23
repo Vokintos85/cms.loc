@@ -22,7 +22,7 @@
                         <?= $index++; ?>
                     </th>
                     <td>
-                        <?= $page['title'] ?>
+                        <a href="/admin/pages/<?= $page['id'] ?>"><?= $page['title'] ?></a>
                     </td>
                     <td>
                         <?= $page['date'] ?>

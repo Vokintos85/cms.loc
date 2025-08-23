@@ -103,7 +103,7 @@
 	$.Redactor.opts = {
 
 		// settings
-		lang: 'en',
+		lang: 'ru',
 		direction: 'ltr', // ltr or rtl
 
 		plugins: false, // array
@@ -111,7 +111,7 @@
 		focus: false,
 		focusEnd: false,
 
-		placeholder: false,
+		placeholder: true,
 
 		visual: true,
 		tabindex: false,
