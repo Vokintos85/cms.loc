@@ -17,8 +17,8 @@ var page = {
             beforeSend: function(){
 
             },
-            success: function(result){
-                console.log(result);
+            success: function(){
+                location.href = '/admin/pages';
             }
         });
     },
@@ -40,8 +40,8 @@ var page = {
             beforeSend: function(){
 
             },
-            success: function(result){
-                console.log(result);
+            success: function(){
+                location.href = '/admin/pages';
             }
         });
     }
