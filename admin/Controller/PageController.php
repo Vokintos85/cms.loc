@@ -25,6 +25,7 @@ class PageController extends AdminController
         $pageData = $pageModel->repository->getPage($id);
 
         $this->view->render('pages/edit', [
+            'page_id' => $id,
             'title' => $pageData['title'],
             'content' => $pageData['content'],
         ]);
@@ -49,6 +50,57 @@ class PageController extends AdminController
         } else {
             // Если это GET запрос или форма не отправлена, показываем форму
             $this->view->render('pages/create'); // Исправил на pages/create
+        }
+    }
+
+    public function update()
+    {
+        // ДОБАВЬТЕ ОТЛАДКУ
+        error_log('POST data: ' . print_r($this->request->post, true));
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['success' => false, 'error' => 'Method Not Allowed']);
+            return;
+        }
+
+        $params = $this->request->post;
+
+        // ПРОВЕРКА И ФИКСАЦИЯ page_id
+        if (!isset($params['page_id']) || $params['page_id'] === 'undefined') {
+            // Попробуем получить ID из другого источника или вернем ошибку
+            echo json_encode(['success' => false, 'error' => 'Page ID is missing or invalid']);
+            return;
+        }
+
+        // Убедимся что page_id - число
+        $pageId = (int)$params['page_id'];
+        if ($pageId <= 0) {
+            echo json_encode(['success' => false, 'error' => 'Invalid Page ID']);
+            return;
+        }
+
+        $pageModel = $this->load->model('Page');
+
+        if (!isset($params['title']) || empty(trim($params['title']))) {
+            echo json_encode(['success' => false, 'error' => 'Title is required']);
+            return;
+        }
+
+        try {
+            $result = $pageModel->repository->updatePage(
+                $pageId, // передаем исправленный ID
+                $params
+            );
+
+            echo json_encode([
+                'success' => $result,
+                'page_id' => $pageId,
+                'message' => $result ? 'Page updated successfully' : 'Update failed'
+            ]);
+
+        } catch (\Exception $e) {
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 }
