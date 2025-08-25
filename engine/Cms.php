@@ -2,7 +2,7 @@
 
 namespace Engine;
 
-use Engine\Core\Router\Router;
+use Engine\Core\Router\Router\Router;
 use Engine\DI\DI;
 use Engine\Helper\Common;
 

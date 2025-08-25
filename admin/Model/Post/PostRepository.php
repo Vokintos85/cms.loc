@@ -1,26 +1,26 @@
 <?php
 
-namespace Admin\Model\Page;
+namespace Admin\Model\Post;
 
 use Engine\Model;
-
-class PageRepository extends Model
+use Exception;
+class PostRepository extends Model
 {
-    public function getPages()
+    public function getPosts()
     {
         $sql = $this->queryBuilder->select()
-            ->from('page')
+            ->from('post')
             ->orderBy('id', 'ASC')
             ->sql();
 
         return $this->db->query($sql);
     }
 
-    public function getPage($id)
+    public function getPost($id)
     {
         $qb = $this->queryBuilder
             ->select()
-            ->from('page')
+            ->from('post')
             ->where('id', $id);
 
         return $this->db->query($qb->sql(), $qb->params())->fetch();
@@ -40,33 +40,33 @@ class PageRepository extends Model
      * @param $params
      * @return string|null
      */
-    public function createPage($params)
+    public function createPost($params)
     {
-        $page = new Page();
-        $page->setTitle($params['title']);
-        $page->setContent($params['content']);
-        $pageid = $page->save();
+        $post = new Post();
+        $post->setTitle($params['title']);
+        $post->setContent($params['content']);
+        $postId = $post->save();
 
-        return $pageid;
+        return $postId;
     }
 
-    public function updatePage($pageId, $data)
+    public function updatePost($postId, $data)
     {
         try {
             // Простой SQL запрос без QueryBuilder
-            $sql = "UPDATE page SET title = :title, content = :content, date = :date WHERE id = :id";
+            $sql = "UPDATE post SET title = :title, content = :content, date = :date WHERE id = :id";
 
             $result = $this->db->execute($sql, [
                 'title' => $data['title'],
                 'content' => $data['content'] ?? '',
                 'date' => date('Y-m-d H:i:s'),
-                'id' => $pageId
+                'id' => $postId
             ]);
 
             return $result !== false;
 
         } catch (\Exception $e) {
-            error_log('Update page error: ' . $e->getMessage());
+            error_log('Update post error: ' . $e->getMessage());
             return false;
         }
     }

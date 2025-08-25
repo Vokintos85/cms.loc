@@ -13,7 +13,7 @@ abstract class Model
     protected Connection $db;
     protected array $config;
 
-    protected QueryBuilder $queryBilder;
+    protected QueryBuilder $queryBuilder;
 
 
     /**
@@ -25,6 +25,6 @@ abstract class Model
         $this->db      = $di->get('db');
         $this->config  = $di->get('config');
 
-        $this->queryBilder = new QueryBuilder();
+        $this->queryBuilder = new QueryBuilder();
     }
 }
