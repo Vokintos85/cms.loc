@@ -31,7 +31,7 @@ var page = {
         formData.append('content', $('.redactor-editor').html());
 
         $.ajax({
-            url: '/admin/pages/update/',
+            url: '/admin/pages/update',
             type: this.ajaxMethod,
             data: formData,
             cache: false,

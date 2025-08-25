@@ -41,7 +41,7 @@
                 formData.append('content', $('#redactor').val());
 
                 $.ajax({
-                    url: '/admin/pages/update/',
+                    url: '/admin/pages/update',
                     type: this.ajaxMethod,
                     data: formData,
                     processData: false,
