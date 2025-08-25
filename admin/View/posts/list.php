@@ -20,22 +20,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($posts as $post): ?>
-                    <tr>
-                        <th scope="row">
-                            <?= $post->id ?>
-                        </th>
-                        <td>
-                            <a href="/admin/pages/edit/<?= $post->id ?>">
-                                <?= $post->title ?>
-                            </a>
-                        </td>
-                        <td>
-                            <?= $post->date ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php foreach($posts as $post): ?>
+                        <tr>
+                            <th scope="row">
+                                <?= $post['id'] ?>
+                            </th>
+                            <td>
+                                <a href="/admin/pages/edit/<?= $post['id'] ?>">
+                                    <?= $post['title'] ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?= $post['date'] ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
+
             </table>
         </div>
     </main>
