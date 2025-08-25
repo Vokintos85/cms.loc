@@ -8,7 +8,7 @@ class PostRepository extends Model
 {
     public function getPosts()
     {
-        $sql = $this->queryBilder->select()
+        $sql = $this->queryBuilder->select()
             ->from('post')
             ->orderBy('id', 'ASC')
             ->sql();
@@ -18,7 +18,7 @@ class PostRepository extends Model
 
     public function getPost($id)
     {
-        $qb = $this->queryBilder
+        $qb = $this->queryBuilder
             ->select()
             ->from('post')
             ->where('id', $id);

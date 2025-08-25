@@ -6,9 +6,9 @@ class SettingController extends AdminController
 {
     public function general()
     {
-        $this->load->model('Setting');
+        $settingsModel = $this->load->model('Setting');
 
-        $this->data['settings'] = $this->model->setting->getSettings();
+        $this->data['settings'] = $settingsModel->repository->getSettings();
 
         $this->view->render('setting/general', $this->data);
     }

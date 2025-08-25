@@ -6,7 +6,7 @@
                 <div class="col page-title">
                     <h3>
                         Posts
-                        <a href="/admin/posts/create/">Create post</a>
+                        <a href="/admin/posts/create">Create post</a>
                     </h3>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                                 <?= $post['id'] ?>
                             </th>
                             <td>
-                                <a href="/admin/pages/edit/<?= $post['id'] ?>">
+                                <a href="/admin/posts/<?= $post['id'] ?>">
                                     <?= $post['title'] ?>
                                 </a>
                             </td>

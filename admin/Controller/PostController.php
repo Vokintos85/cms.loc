@@ -25,7 +25,7 @@ class PostController extends AdminController
         $postData = $postModel->repository->getPost($id);
 
         $this->view->render('posts/edit', [
-            'post_id' => $id,
+            'id' => $id,
             'title' => $postData['title'],
             'content' => $postData['content'],
         ]);

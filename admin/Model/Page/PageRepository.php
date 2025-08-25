@@ -8,7 +8,7 @@ class PageRepository extends Model
 {
     public function getPages()
     {
-        $sql = $this->queryBilder->select()
+        $sql = $this->queryBuilder->select()
             ->from('page')
             ->orderBy('id', 'ASC')
             ->sql();
@@ -18,7 +18,7 @@ class PageRepository extends Model
 
     public function getPage($id)
     {
-        $qb = $this->queryBilder
+        $qb = $this->queryBuilder
             ->select()
             ->from('page')
             ->where('id', $id);

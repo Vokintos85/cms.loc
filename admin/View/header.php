@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link">
+                        <a class="nav-link" href="/admin/settings/general">
                             <i class="icon-equalizer icons"></i> Settings
                         </a>
                     </li>

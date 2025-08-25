@@ -8,7 +8,7 @@ var post = {
         formData.append('content', $('.redactor-editor').html());
 
         $.ajax({
-            url: '/admin/post/add',
+            url: '/admin/posts/add',
             type: this.ajaxMethod,
             data: formData,
             cache: false,
@@ -31,7 +31,7 @@ var post = {
         formData.append('content', $('.redactor-editor').html());
 
         $.ajax({
-            url: '/admin/post/update/',
+            url: '/admin/posts/update',
             type: this.ajaxMethod,
             data: formData,
             cache: false,
