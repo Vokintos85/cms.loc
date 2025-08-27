@@ -34,7 +34,7 @@
 
                             </div>
                         <?php endforeach; ?>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary" style="cursor: pointer">Save changes</button>
                     </form>
                 </div>
             </div>
