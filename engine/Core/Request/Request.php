@@ -4,17 +4,17 @@ namespace Engine\Core\Request;
 
 class Request
 {
-    public $get = [];
+    public array $get = [];
 
-    public $post = [];
+    public array $post = [];
 
-    public $request = [];
+    public array $request = [];
 
-    public $cookie = [];
+    public array $cookie = [];
 
-    public $files = [];
+    public array $files = [];
 
-    public $server = [];
+    public array $server = [];
 
     public function __construct()
     {
@@ -24,5 +24,10 @@ class Request
         $this->files   = $_FILES;
         $this->cookie  = $_COOKIE;
         $this->server  = $_SERVER;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->server['REQUEST_METHOD'];
     }
 }

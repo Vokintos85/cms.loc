@@ -27,3 +27,4 @@ $this->router->add('post-update', '/admin/posts/update', 'PostController:update'
 
 // Settings Routes (GET)
 $this->router->add('settings-general', '/admin/settings/general', 'SettingController:general');
+$this->router->add('settings-general-save', '/admin/settings/general', 'SettingController:saveGeneral', 'POST');
