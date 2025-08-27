@@ -12,6 +12,7 @@ class SettingRepository extends Model
             ->orderBy('id', 'ASC')
             ->sql();
 
-        return $this->db->query($sql);
+        return $this->db->query($sql)
+            ->fetchAll(\PDO::FETCH_OBJ);
     }
 }
