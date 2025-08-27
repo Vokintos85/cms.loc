@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col page-title">
-                <h3>Settings</h3>
+                <h3>Setting</h3>
             </div>
         </div>
         <div class="row">
@@ -13,10 +13,10 @@
                     <?php foreach($settings as $setting):?>
                     <div class="form-group row">
                         <label for="formNameSite" class="col-2 col-form-label">
-                            <?= $setting->name ?>
+                            <?= $setting->name; ?>
                         </label>
                         <div class="col-10">
-                            <input class="form-control" type="text" name="<?= $setting->get_field ?>" value="<?= $setting->value ?>" id="formNameSite">
+                            <input class="form-control" type="text" name="<?= $setting->key_field ?>" value="<?= $setting->value ?>" id="formNameSite">
                         </div>
                     </div>
                     <?php endforeach; ?>
