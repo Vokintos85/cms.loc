@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col page-title">
-                <h3>Settings</h3>
+                <h3 class="py-3">Settings</h3>
             </div>
         </div>
         <div class="row">
@@ -20,6 +20,7 @@
                         </div>
                     </div>
                     <?php endforeach; ?>
+
                     <div class="form-group row">
                         <label for="formLangSite" class="col-2 col-form-label">
                             Language
@@ -30,6 +31,7 @@
                             </select>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </form>
             </div>

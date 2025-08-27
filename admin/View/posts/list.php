@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col page-title">
-                    <h3>
+                    <h3 class="py-3">
                         Posts
                         <a href="/admin/posts/create">Create post</a>
                     </h3>
