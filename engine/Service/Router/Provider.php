@@ -2,7 +2,7 @@
 
 namespace Engine\Service\Router;
 
-use Engine\Core\Router\Router;
+use Engine\Core\Router\Router\Router;
 use Engine\Service\AbstractProvider;
 
 class Provider extends AbstractProvider
