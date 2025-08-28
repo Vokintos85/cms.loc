@@ -2,7 +2,7 @@
 
 namespace Engine\Core\Template;
 
-use Admin\Model\Setting\SettingRepository;
+use Engine\Core\Config\Config;
 
 class Theme
 {
@@ -45,12 +45,17 @@ class Theme
         $this->asset     = new Asset();
     }
 
-    public static function getUrl()
+    public static function getUrl(): string
     {
-    $currentTheme = Config::item ('defaultTheme', 'main');
-    $baseUrl      = Config::item ('baseUrl', 'main');
+        $currentTheme = Config::item ('defaultTheme', 'main');
+        $baseUrl      = Config::item ('baseUrl', 'main');
 
-    return sprintf(self::URL_THEME_MASK, $currentTheme);
+        return sprintf(self::URL_THEME_MASK, $currentTheme);
+    }
+
+    public static function getThemePath(): string
+    {
+        return '';
     }
 
 
@@ -60,6 +65,7 @@ class Theme
     public function header(string $name = ''): void
     {
         $template = $this->resolveTemplateName('header', $name);
+
         $this->loadTemplate($template);
     }
 
@@ -69,6 +75,7 @@ class Theme
     public function footer(string $name = ''): void
     {
         $template = $this->resolveTemplateName('footer', $name);
+
         $this->loadTemplate($template);
     }
 
@@ -109,7 +116,10 @@ class Theme
      */
     protected function loadTemplate(string $name, array $data = []): void
     {
+        $this->themePath = ROOT_DIR . '/content/themes/default/'; // TODO: берём из конфигурации
+
         $templateFile = $this->themePath . $name . '.php';
+
         $templateFile = str_replace(['//', '\\'], '/', $templateFile);
 
         if (!file_exists($templateFile)) {

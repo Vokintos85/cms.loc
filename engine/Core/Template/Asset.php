@@ -4,12 +4,12 @@ namespace Engine\Core\Template;
 
 class Asset
 {
-    const EXT_JS   = '.js';
-    const EXT_CSS  = '.css';
-    const EXT_LESS = '.less';
+    const string EXT_JS   = '.js';
+    const string EXT_CSS  = '.css';
+    const string EXT_LESS = '.less';
 
-    const JS_SCRIPT_MASK = '<script src="%s" type="text/javascript"></script>';
-    const CSS_LINK_MASK  = '<link rel="stylesheet" href="%s">';
+    const string JS_SCRIPT_MASK = '<script src="%s" type="text/javascript"></script>';
+    const string CSS_LINK_MASK  = '<link rel="stylesheet" href="%s">';
 
     /**
      * @var array
@@ -22,6 +22,7 @@ class Asset
     public static function css($link)
     {
         $file = Theme::getThemePath() . DS . $link . self::EXT_CSS;
+
         if (is_file($file)) {
             self::$container['css'][] = [
                 'file' => Theme::getUrl() . '/' . $link . self::EXT_CSS
