@@ -34,7 +34,7 @@ class Config
             throw new \Exception(sprintf('Config file <strong>%s</strong> not found.', $path));
         }
 
-        $items = require_once $path;
+        $items = require $path;
 
         if (empty($items) || !is_array($items)) {
             throw new \Exception(sprintf('Config file <strong>%s</strong> is not a valid array.', $path));

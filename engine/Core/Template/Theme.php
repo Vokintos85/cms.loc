@@ -11,6 +11,8 @@ class Theme
             'block' => 'block-%s'
     ];
 
+    const URL_THEME_MASK = '/content/theme/%s';
+
     protected string $themePath;
     protected string $themeUrl;
     protected array $data = [];
@@ -20,6 +22,14 @@ class Theme
         $this->themePath = ROOT_DIR . '/View/';
         $this->themeUrl = '/View/';
     }
+
+    public static function getUrl()
+    {
+    $currentTheme = Config::item ('defaulttheme', 'main');
+
+    return sprintf(self::URL_THEME_MASK, $currentTheme);
+    }
+
 
     /**
      * Load header template

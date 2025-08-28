@@ -8,7 +8,7 @@ class Common
      * Проверяет, является ли запрос POST.
      * @return bool
      */
-    public function isPost()
+    public static function isPost()
     {
         return $_SERVER['REQUEST_METHOD'] == 'POST';
     }
