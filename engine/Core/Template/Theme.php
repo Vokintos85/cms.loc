@@ -2,6 +2,8 @@
 
 namespace Engine\Core\Template;
 
+use Admin\Model\Setting\SettingRepository;
+
 class Theme
 {
     private const TEMPLATE_RULES = [
@@ -11,21 +13,42 @@ class Theme
             'block' => 'block-%s'
     ];
 
-    const URL_THEME_MASK = '/content/theme/%s';
+    const URL_THEME_MASK = '%s/content/theme/%s';
 
+    /**
+     * @var string
+     */
     protected string $themePath;
+    /**
+     * @var string
+     */
     protected string $themeUrl;
+
+    /**
+     * @var array
+     */
     protected array $data = [];
+    /**
+     * @var
+     */
+    public $asset;
+
+    /**
+     * @var
+     */
+    public $theme;
 
     public function __construct()
     {
         $this->themePath = ROOT_DIR . '/View/';
-        $this->themeUrl = '/View/';
+        $this->themeUrl  = '/View/';
+        $this->asset     = new Asset();
     }
 
     public static function getUrl()
     {
-    $currentTheme = Config::item ('defaulttheme', 'main');
+    $currentTheme = Config::item ('defaultTheme', 'main');
+    $baseUrl      = Config::item ('baseUrl', 'main');
 
     return sprintf(self::URL_THEME_MASK, $currentTheme);
     }
