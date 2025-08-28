@@ -2,6 +2,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+class_alias('Engine\\Core\\Template\\Asset', 'Asset');
+class_alias('Engine\\Core\\Template\\Theme', 'Theme');
+
 use Engine\Cms;
 use Engine\DI\DI;
 
