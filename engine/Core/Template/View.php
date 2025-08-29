@@ -2,8 +2,6 @@
 
 namespace Engine\Core\Template;
 
-use Engine\Core\Template\Theme;
-
 class View
 {
     protected $theme;
@@ -15,10 +13,10 @@ class View
 
     /**
      * @param $template
-     * @param $vars
+     * @param array $vars
      * @return void
      */
-    public function render($template, $vars = []): void
+    public function render($template, array $vars = []): void
     {
         include_once $this->getThemePath() . '/functions.php';
         $templatePath = $this->getTemplatePath($template, ENV);
@@ -31,8 +29,8 @@ class View
         $this->theme->setData($vars);
         extract($vars);
 
-            ob_start();
-            ob_implicit_flush();
+        ob_start();
+        ob_implicit_flush();
 
         try {
             require $templatePath;
@@ -41,7 +39,7 @@ class View
             throw $e;
         }
 
-            echo ob_get_clean();
+        echo ob_get_clean();
     }
 
     private function getTemplatePath(string $template, ?string $env = null): string

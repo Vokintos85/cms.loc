@@ -5,7 +5,6 @@ define('ROOT_DIR', __DIR__);
 require __DIR__ . '/../vendor/autoload.php';
 
 define('ENV', 'Admin');
-
 define('DS', DIRECTORY_SEPARATOR );
 
 // Запускаем ядро приложения
