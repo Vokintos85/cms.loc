@@ -8,7 +8,7 @@ class View
 
     public function __construct()
     {
-        $this->theme = new Theme();
+        $this->theme = new Theme('default');
     }
 
     /**
@@ -18,7 +18,6 @@ class View
      */
     public function render($template, array $vars = []): void
     {
-        include_once $this->getThemePath() . '/functions.php';
         $templatePath = $this->getTemplatePath($template, ENV);
 
         if (!is_file($templatePath)) {
@@ -27,6 +26,7 @@ class View
             );
         }
         $this->theme->setData($vars);
+        $theme = $this->theme;
         extract($vars);
 
         ob_start();
