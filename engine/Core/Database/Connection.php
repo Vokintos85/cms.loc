@@ -2,6 +2,7 @@
 
 namespace Engine\Core\Database;
 
+use Engine\Core\Config\Config;
 use PDO;
 use PDOException;
 
@@ -41,6 +42,18 @@ class Connection
                 $config['host']
             ));
         }
+    }
+
+    private function connect()
+    {
+        $config = Config::group ('database');
+
+        $dsn = 'msql.host=' .$config['host'] . ';dbname=' .$config('db_name') .'charset=';
+
+        $this->link = new PDO ($dsn, $config['username'], $config['password']);
+
+        return $this;
+
     }
 
     /**

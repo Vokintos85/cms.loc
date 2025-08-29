@@ -2,16 +2,18 @@
 
 namespace Engine\Core\Template;
 
+use Engine\Core\Config\Config;
+
 class Theme
 {
-    private const TEMPLATE_RULES = [
+    public const TEMPLATE_RULES = [
             'header' => 'header-%s',
             'footer' => 'footer-%s',
             'sidebar' => 'sidebar-%s',
             'block' => 'block-%s'
     ];
 
-    const URL_THEME_MASK = '/content/theme/%s';
+    const URL_THEME_MASK = '/content/themes/%s';
 
     protected string $themePath;
     protected string $themeUrl;
@@ -23,13 +25,17 @@ class Theme
         $this->themeUrl = '/View/';
     }
 
-    public static function getUrl()
+    public static function getUrl(): string
     {
-    $currentTheme = Config::item ('defaulttheme', 'main');
-
-    return sprintf(self::URL_THEME_MASK, $currentTheme);
+        $currentTheme = Config::item('defaultTheme', 'main');
+        return sprintf(self::URL_THEME_MASK, $currentTheme);
     }
 
+    public static function getAssetUrl(string $assetPath = ''): string
+    {
+        $baseUrl = self::getUrl();
+        return $baseUrl . '/' . ltrim($assetPath, '/');
+    }
 
     /**
      * Load header template
@@ -165,4 +171,15 @@ class Theme
     {
         return $this->data;
     }
+
+    public static function getThemePath()
+    {
+        return ROOT_DIR . '/content/themes/' . self::getTheme();
+    }
+
+    public static function getTheme()
+    {
+        return Config::item('defaultTheme', 'main');
+    }
+
 }

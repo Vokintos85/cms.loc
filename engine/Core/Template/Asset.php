@@ -4,8 +4,11 @@ namespace Engine\Core\Template;
 
 class Asset
 {
-
-
+    const JS_SCRIPT_MASK = '<script src="%s"></script>';
+    const CSS_LINK_MASK = '<link rel="stylesheet" href="%s">';
+    const JS_LINK_MASK = '<script src="%s"></script>';
+    const EXT_CSS = '.css';
+    const EXT_JS = '.js';
     /**
      * @var array
      */
