@@ -6,9 +6,11 @@ class View
 {
     protected $theme;
 
+    protected $setting;
+
     public function __construct()
     {
-        $this->theme = new Theme('default');
+        $this->theme   = new Theme('default');
     }
 
     /**
