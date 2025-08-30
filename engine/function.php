@@ -8,22 +8,27 @@
  */
 function path($section)
 {
-    // Return path to correct section.
-    switch (strtolower($section))
-    {
-        case 'controller':
-            return ROOT_DIR . DS . 'Controller';
-        case 'config':
-            return ROOT_DIR . DS . 'Config';
-        case 'model':
-            return ROOT_DIR . DS . 'Model';
-        case 'view':
-            return ROOT_DIR . DS . 'View';
-        case 'language':
-            return ROOT_DIR . DS . 'Language';
-        default:
-            return ROOT_DIR;
+    if (ENV == 'Admin') {
+        $basePath = ROOT_DIR . DS . strtolower(ENV);
+    } else {
+        $basePath = ROOT_DIR;
     }
+
+    switch (strtolower($section)) {
+        case 'controller':
+            return $basePath . DS . 'Controller';
+        case 'config':
+            return $basePath . DS . 'Config';
+        case 'model':
+            return $basePath . DS . 'Model';
+        case 'view':
+            return $basePath . DS . 'View';
+        case 'language':
+            return $basePath . DS . 'Language';
+        default:
+            return $basePath;
+    }
+
 }
 
 /**

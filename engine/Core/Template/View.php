@@ -2,23 +2,21 @@
 
 namespace Engine\Core\Template;
 
-use Engine\Core\Template\Theme;
-
 class View
 {
     protected $theme;
 
     public function __construct()
     {
-        $this->theme = new Theme();
+        $this->theme = new Theme('default');
     }
 
     /**
      * @param $template
-     * @param $vars
+     * @param array $vars
      * @return void
      */
-    public function render($template, $vars = []): void
+    public function render($template, array $vars = []): void
     {
         $templatePath = $this->getTemplatePath($template, ENV);
 
@@ -28,10 +26,11 @@ class View
             );
         }
         $this->theme->setData($vars);
+        $theme = $this->theme;
         extract($vars);
 
-            ob_start();
-            ob_implicit_flush();
+        ob_start();
+        ob_implicit_flush();
 
         try {
             require $templatePath;
@@ -40,7 +39,7 @@ class View
             throw $e;
         }
 
-            echo ob_get_clean();
+        echo ob_get_clean();
     }
 
     private function getTemplatePath(string $template, ?string $env = null): string
@@ -50,5 +49,10 @@ class View
             : '/View/';
 
         return ROOT_DIR . $basePath . $template . '.php';
+    }
+
+    private function getThemePath()
+    {
+        return ROOT_DIR . '/content/themes/default';
     }
 }
