@@ -4,7 +4,7 @@ namespace Engine;
 
 use Engine\Core\Database\Connection;
 use Engine\Core\Database\QueryBuilder;
-use Engine\DI\DI;
+use Engine\DI\DI\DI;
 
 abstract class Model
 {

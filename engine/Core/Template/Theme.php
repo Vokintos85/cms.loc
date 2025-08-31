@@ -51,6 +51,17 @@ class Theme
         return '/content/themes/' . $this->themeName;
     }
 
+    /**
+     * @return void
+     */
+    public static function title()
+    {
+        $nameSite    = Setting::get('name_site');
+        $description = Setting::get('description');
+
+        echo $nameSite . ' | ' . $description;
+    }
+
     /** URL ассета с учётом manifest.json и версионирования */
     public function asset(string $assetPath): string
     {

@@ -3,7 +3,7 @@
 namespace Engine;
 
 use Engine\Core\Router\Router\Router;
-use Engine\DI\DI;
+use Engine\DI\DI\DI;
 use Engine\Helper\Common;
 
 class Cms

@@ -6,7 +6,7 @@ use Engine\Core\Auth\Auth;
 use Engine\Core\Database\Connection;
 use Engine\Core\Request\Request;
 use Engine\Core\Template\View;
-use Engine\DI\DI;
+use Engine\DI\DI\DI;
 
 abstract class Controller
 {

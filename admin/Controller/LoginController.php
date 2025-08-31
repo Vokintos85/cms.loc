@@ -3,7 +3,7 @@
 namespace Admin\Controller;
 
 use Engine\Controller;
-use Engine\DI\DI;
+use Engine\DI\DI\DI;
 
 class LoginController extends Controller
 {
