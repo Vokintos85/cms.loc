@@ -3,18 +3,19 @@
 namespace Engine\Core\Template;
 
 use Admin\Model\Setting\SettingRepository;
+use Engine\DI\DI;
 
 class Setting
 {
     /**
      * @var
      */
-    protected static $di;
+    protected static DI $di;
 
     /**
      * @var
      */
-    protected static $settingRepository;
+    protected static SettingRepository $settingRepository;
 
     public function __construct($di)
     {

@@ -22,14 +22,19 @@ class SettingRepository extends Model
      */
     public function getSettingValue($keyfield)
     {
-        $sql = $this->queryBuilder->select('value')
+        $sql = $this->queryBuilder
+            ->select('value')
             ->from('setting')
             ->where('key_field', $keyfield)
             ->sql();
 
-        $query = $this->db->query($sql, $this->queryBuilder->values);
+        $result = $this
+            ->db
+            ->query($sql, $this->queryBuilder->values)
+            ->fetch(\PDO::FETCH_OBJ);
 
-        return isset($query[0]) ? $query[0]->value : null;
+
+        return $result?->value;
     }
 
     public function update(string $key, string $value): bool

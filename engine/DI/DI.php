@@ -1,6 +1,6 @@
 <?php
 
-namespace Engine\DI\DI;
+namespace Engine\DI;
 
 use Engine\Expetion\ContainerException;
 

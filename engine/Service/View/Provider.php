@@ -11,12 +11,10 @@ class Provider extends AbstractProvider
      * @var string
      */
 
-    public $serviceName = 'view';
+    public string $serviceName = 'view';
 
     public function init(): void
     {
-        $view = new View();
-
-        $this->di->set($this->serviceName, $view);
+        $this->di->set($this->serviceName, new View($this->di));
     }
 }

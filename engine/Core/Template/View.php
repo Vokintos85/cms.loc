@@ -2,15 +2,18 @@
 
 namespace Engine\Core\Template;
 
+use Engine\DI\DI;
+
 class View
 {
     protected $theme;
 
     protected $setting;
 
-    public function __construct()
+    public function __construct(DI $di)
     {
         $this->theme   = new Theme('default');
+        $this->setting = new Setting($di);
     }
 
     /**

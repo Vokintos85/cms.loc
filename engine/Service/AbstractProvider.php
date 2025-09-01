@@ -2,7 +2,7 @@
 
 namespace Engine\Service;
 
-use Engine\DI\DI\DI;
+use Engine\DI\DI;
 
 abstract class AbstractProvider
 {
