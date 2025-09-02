@@ -3,7 +3,6 @@
 namespace Admin\Controller;
 
 use Engine\Controller;
-use Engine\Core\Auth\Auth;
 use Engine\DI\DI;
 
 class LogoutController extends Controller

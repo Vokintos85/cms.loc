@@ -49,9 +49,13 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>
+                            <?= \Engine\Core\Template\Theme::title() ?>
+                        </h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">
+                            <?= \Engine\Core\Template\Theme::description() ?>
+                        </span>
                     </div>
                 </div>
             </div>

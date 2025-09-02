@@ -28,6 +28,8 @@ class Theme
     /** @var array<string,string> Кэш манифестов ассетов по теме */
     private static array $assetManifestCache = [];
 
+    private static array $cache = [];
+
     public function __construct(?string $themeName = null)
     {
         $this->themeName = $themeName ?: self::getTheme();
@@ -50,6 +52,18 @@ class Theme
     {
         return '/content/themes/' . $this->themeName;
     }
+
+    public static function title(): string
+    {
+        return self::$cache['title'] ??= Setting::get('name_site');
+    }
+
+
+    public static function description(): string
+    {
+        return self::$cache['description'] ??= Setting::get('description');
+    }
+
 
     /** URL ассета с учётом manifest.json и версионирования */
     public function asset(string $assetPath): string
