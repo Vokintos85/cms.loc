@@ -10,10 +10,13 @@ class View
 
     protected $setting;
 
+    protected $menu;
+
     public function __construct(DI $di)
     {
         $this->theme   = new Theme('default');
         $this->setting = new Setting($di);
+        $this->menu = new Menu($di);
     }
 
     /**
