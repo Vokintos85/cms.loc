@@ -27,7 +27,7 @@ $this->router->add('post-update', '/admin/posts/update', 'PostController:update'
 
 // Settings Routes (GET)
 $this->router->add('settings-general', '/admin/settings/general', 'SettingController:general');
-$this->router->add('setting-menus', '/admin/settings/appearance/mkenus/', 'SettingController:menus');
+$this->router->add('settings-menus', '/admin/settings/appearance/menus', 'SettingController:menus');
 $this->router->add('settings-general-save', '/admin/settings/general', 'SettingController:saveGeneral', 'POST');
 $this->router->add('settings-add-menu', '/admin/settings/ajaxMenuAdd', 'SettingController:ajaxMenuAdd', 'POST');
 $this->router->add('settings-add-menu-item', '/admin/settings/ajaxMenuAddItem', 'SettingController:ajaxMenuAddItem', 'POST');

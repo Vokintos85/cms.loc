@@ -8,9 +8,10 @@
             </div>
         </div>
         <div class="row">
+
             <div class="col">
                 <div class="setting-tabs">
-                    <?php Theme::block('setting/tabs') ?>
+                    <?php $this->theme->block('setting/tabs') ?>
                 </div>
             </div>
         </div>
@@ -22,6 +23,9 @@
                         Add Menu
                     </a>
                 </h4>
+
+
+
                 <?php if(!empty($menus)): ?>
                     <div class="menu-list">
                         <ul class="nav flex-column">

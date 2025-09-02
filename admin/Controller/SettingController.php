@@ -17,12 +17,12 @@ class SettingController extends AdminController
 
     public function menus()
     {
-        $this->load->model('Menu', false, 'Cms');
-        $this->load->model('MenuItem', false, 'Cms');
+        $menuModel = $this->load->model('Menu', false, 'Cms');
+        // $this->load->model('MenuItem', false, 'Cms');
 
-        $this->data['menuId']   = $this->request->get['menu_id'];
-        $this->data['menus']    = $this->model->menu->getList();
-        $this->data['editMenu'] = $this->model->menuItem->getItems($this->data['menuId']);
+//        $this->data['menuId']   = $this->request->get['menu_id'];
+        $this->data['menus']    = $menuModel->repository->getList();
+        // $this->data['editMenu'] = $this->model->menuItem->getItems($this->data['menuId']);
 
         $this->view->render('setting/menus', $this->data);
     }
@@ -38,6 +38,7 @@ class SettingController extends AdminController
 
             echo $addMenu;
         }
+    }
 
         public function ajaxMenuAddItem()
     {

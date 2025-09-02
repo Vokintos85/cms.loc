@@ -2,26 +2,24 @@
 
 namespace Engine;
 
+use Engine\DI\DI;
+
 class Load
 {
-    private const string MASK_MODEL_ENTITY     = '\%s\Model\%s\%s';
+
+    private const string MASK_MODEL_ENTITY = '\%s\Model\%s\%s';
     private const string MASK_MODEL_REPOSITORY = '\%s\Model\%s\%sRepository';
 
-
-    /**
-     * @param $modelName
-     * @param $modelDir
-     * @param $env
-     * @return \stdClass
-     */
-    public function model($modelName, $modelDir = false, $env = false)
+    public function __construct(private DI $di)
     {
-        global $di;
+    }
 
-        $modelName  = ucfirst($modelName);
-        $model      = new \stdClass();
-        $modelDir   = $modelDir ? $modelDir : $modelName;
-        $env        = $env ? $env : ENV;
+    public function model(string $modelName, bool $modelDir = false, false|string $env = false)
+    {
+        $modelName = ucfirst($modelName);
+
+        $modelDir = $modelDir ? $modelDir : $modelName;
+        $env = $env ? $env : ENV;
 
         $namespaceEntity = sprintf(
             self::MASK_MODEL_ENTITY,
@@ -32,13 +30,14 @@ class Load
 
         $namespaceRepository = sprintf(
             self::MASK_MODEL_REPOSITORY,
-            ENV,
+            $env,
             $modelDir,
             $modelName
         );
 
-        $model->entity     = $namespaceEntity;
-        $model->repository = new $namespaceRepository($di);
+        $model = new \stdClass();
+        $model->entity = $namespaceEntity;
+        $model->repository = new $namespaceRepository($this->di);
 
         return $model;
     }

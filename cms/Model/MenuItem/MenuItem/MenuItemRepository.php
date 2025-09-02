@@ -22,6 +22,6 @@ class MenuItemRepository extends Model
             ->orderBy('position', 'ASC')
             ->sql();
 
-        return $this->db->query($sql, $this->queryBuilder->values);
+        return $this->db->query($sql, $this->queryBuilder->values)->fetchAll(\PDO::FETCH_OBJ);
     }
 }
