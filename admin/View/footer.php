@@ -11,5 +11,6 @@
 <script src="/assets/js/init.js"></script>
 <script src="/assets/js/page.js"></script>
 <script src="/assets/js/post.js"></script>
+<script src="/admin/Assets/js/menu.js"></script>
 </body>
 </html>
