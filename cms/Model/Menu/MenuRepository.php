@@ -3,6 +3,7 @@
 namespace Cms\Model\Menu;
 
 use Engine\Model;
+use PDO;
 
 class MenuRepository extends Model
 {
@@ -33,5 +34,6 @@ class MenuRepository extends Model
                 ->sql()
         );
 
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }

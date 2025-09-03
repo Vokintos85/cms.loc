@@ -18,7 +18,7 @@ class QueryBuilder
      * @param string $fields
      * @return $this
      */
-    public function select($fields = '*')
+    public function select(string $fields = '*'): static
     {
         $this->reset();
         $this->sql['select'] = "SELECT {$fields} ";
@@ -27,10 +27,21 @@ class QueryBuilder
     }
 
     /**
+     * @return $this
+     */
+    public function delete()
+    {
+        $this->reset();
+        $this->sql['delete'] = "DELETE ";
+
+        return $this;
+    }
+
+    /**
      * @param $table
      * @return $this
      */
-    public function from($table)
+    public function from($table): static
     {
         $this->sql['from'] = "FROM {$table} ";
 
@@ -43,7 +54,7 @@ class QueryBuilder
      * @param string $operator
      * @return $this
      */
-    public function where($column, $value, $operator = '=')
+    public function where(string $column, string $value, string $operator = '='): static
     {
         $this->sql['where'][] = "{$column} {$operator} ?";
         $this->values[] = $value;
@@ -78,7 +89,7 @@ class QueryBuilder
      * @param $table
      * @return $this
      */
-    public function update($table)
+    public function update($table): static
     {
         $this->reset();
         $this->sql['update'] = "UPDATE {$table} ";
@@ -86,7 +97,7 @@ class QueryBuilder
         return $this;
     }
 
-    public function insert($table)
+    public function insert($table): static
     {
         $this->reset();
         $this->sql['insert'] = "INSERT INTO {$table} ";
@@ -98,13 +109,13 @@ class QueryBuilder
      * @param array $data
      * @return $this
      */
-    public function set($data = [])
+    public function set(array $data = []): static
     {
         $this->sql['set'] .= "SET ";
 
-        if (!empty($data)) {
+        if(!empty($data)) {
             foreach ($data as $key => $value) {
-                $this->sql['set'] .= "{$key} = ? ";
+                $this->sql['set'] .= "{$key} = ?";
                 if (next($data)) {
                     $this->sql['set'] .= ", ";
                 }
@@ -122,7 +133,7 @@ class QueryBuilder
     {
         $sql = '';
 
-        if (!empty($this->sql)) {
+        if(!empty($this->sql)) {
             foreach ($this->sql as $key => $value) {
                 if ($key == 'where') {
                     $sql .= ' WHERE ';
@@ -141,15 +152,10 @@ class QueryBuilder
         return $sql;
     }
 
-    public function params(): array
-    {
-        return $this->values;
-    }
-
     /**
      * Reset Builder
      */
-    public function reset()
+    public function reset(): void
     {
         $this->sql    = [];
         $this->values = [];

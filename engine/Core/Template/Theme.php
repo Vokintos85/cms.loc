@@ -211,6 +211,7 @@ class Theme
 //        }
 
         try {
+            $theme = $this;
             extract(array_merge($this->data, $data), EXTR_SKIP);
             include '/' . $file;
         } catch (\Throwable $e) {

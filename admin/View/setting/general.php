@@ -11,20 +11,29 @@
         <div class="row">
             <div class="col">
                 <!-- Tabs -->
-                <ul class="nav nav-tabs" id="settingsTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
-                                type="button" role="tab" aria-controls="general" aria-selected="true">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/settings/general/">
                             General
-                        </button>
+                        </a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu"
-                                type="button" role="tab" aria-controls="menu" aria-selected="false">
-                            Menu
-                        </button>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#"
+                           id="appearanceDropdown"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Appearance
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="appearanceDropdown">
+                            <li><a class="dropdown-item" href="/admin/settings/appearance/themes">Themes</a></li>
+                            <li><a class="dropdown-item" href="/admin/settings/appearance/menus">Menus</a></li>
+                        </ul>
                     </li>
                 </ul>
+
 
                 <!-- Tabs content -->
                 <div class="tab-content mt-3" id="settingsTabsContent">

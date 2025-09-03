@@ -34,7 +34,7 @@ class Load
 
         $namespaceRepository = sprintf(
             self::MASK_MODEL_REPOSITORY,
-            ENV,
+            $env,
             $modelDir,
             $modelName
         );

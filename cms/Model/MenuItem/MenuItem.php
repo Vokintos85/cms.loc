@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Model\MenuItem\MenuItem;
+namespace Cms\Model\MenuItem;
 
 use Engine\Core\Database\ActiveRecord;
 

@@ -3,6 +3,7 @@
 namespace Cms\Model\Menu;
 
 use Engine\Core\Database\ActiveRecord;
+
 class Menu
 {
     use ActiveRecord;

@@ -63,4 +63,9 @@ class View
     {
         return ROOT_DIR . '/content/themes/default';
     }
+
+    public function getTheme(): Theme
+    {
+        return $this->theme;
+    }
 }
