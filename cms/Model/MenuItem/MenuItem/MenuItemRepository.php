@@ -8,10 +8,11 @@ class MenuItemRepository extends Model
 {
     const NEW_MENU_ITEM_NAME = 'New item';
 
+
     /**
-     * @param int $menuId
-     * @param array $params
-     * @return mixed
+     * @param $menuId
+     * @param $params
+     * @return void
      */
     public function getItems($menuId, $params = [])
     {
