@@ -33,6 +33,5 @@ class MenuRepository extends Model
                 ->sql()
         );
 
-        return $query;
     }
 }

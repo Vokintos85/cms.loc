@@ -7,25 +7,22 @@ class Load
     private const string MASK_MODEL_ENTITY     = '\%s\Model\%s\%s';
     private const string MASK_MODEL_REPOSITORY = '\%s\Model\%s\%sRepository';
 
-
     /**
      * @param $modelName
-     * @param $modelDir
-     * @param $env
+     * @param bool $modelDir
      * @return \stdClass
      */
-    public function model($modelName, $modelDir = false, $env = false)
+    public function model($modelName, $modelDir = false)
     {
         global $di;
 
         $modelName  = ucfirst($modelName);
         $model      = new \stdClass();
         $modelDir   = $modelDir ? $modelDir : $modelName;
-        $env        = $env ? $env : ENV;
 
         $namespaceEntity = sprintf(
             self::MASK_MODEL_ENTITY,
-            $env,
+            ENV,
             $modelDir,
             $modelName
         );

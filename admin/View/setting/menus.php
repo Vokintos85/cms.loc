@@ -10,7 +10,6 @@
         <div class="row">
             <div class="col">
                 <div class="setting-tabs">
-                    <?php Theme::block('setting/tabs') ?>
                 </div>
             </div>
         </div>
