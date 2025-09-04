@@ -59,7 +59,7 @@ class SettingController extends AdminController
         if (isset($params['name']) && strlen($params['name']) > 0) {
             $addMenu = $model->repository->add($params);
 
-            echo $addMenu;
+            $this->view->render('setting/_menu_Item', ['item' => $addMenu]);
         }
     }
 
@@ -77,9 +77,7 @@ class SettingController extends AdminController
             $item->name = \Cms\Model\MenuItem\MenuItemRepository::NEW_MENU_ITEM_NAME;
             $item->link = '#';
 
-            $this->view->getTheme()->block('setting/menu_item', [
-                'item' => $item
-            ]);
+            $this->view->render('setting/_menu_Item', ['item' => $item]);
         }
     }
 
@@ -98,10 +96,10 @@ class SettingController extends AdminController
     {
         $params = $this->request->post;
 
-        $this->load->model('MenuItem', false, 'Cms');
+        $menuItemModel = $this->load->model('MenuItem', false, 'Cms');
 
         if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
-            $removeItem = $this->model->menuItem->remove($params['item_id']);
+            $removeItem = $menuItemModel->repository->remove($params['item_id']);
 
             echo $removeItem;
         }
