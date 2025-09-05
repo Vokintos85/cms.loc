@@ -8,8 +8,6 @@ class DashboardController extends AdminController
     {
         $userModel = $this->load->model('User');
 
-        $userModel->repository->test();
-
         print_r($userModel->reposytory->getUsers);
 
         $this->view->render('dashboard');

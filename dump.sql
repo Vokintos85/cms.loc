@@ -14,6 +14,35 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Дамп структуры для таблица cms.menu
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE IF NOT EXISTS `menu` (
+                                      `id` int NOT NULL AUTO_INCREMENT,
+                                      `name` varchar(255) NOT NULL DEFAULT '0',
+                                      PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Дамп данных таблицы cms.menu: ~3 rows (приблизительно)
+
+-- Дамп структуры для таблица cms.menu_item
+DROP TABLE IF EXISTS `menu_item`;
+CREATE TABLE IF NOT EXISTS `menu_item` (
+                                           `id` int NOT NULL AUTO_INCREMENT,
+                                           `menu_id` int NOT NULL DEFAULT '0',
+                                           `name` varchar(255) NOT NULL DEFAULT '',
+                                           `parent` tinyint(1) NOT NULL DEFAULT (0),
+                                           `position` int NOT NULL DEFAULT '999',
+                                           `link` varchar(255) DEFAULT '#',
+                                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Дамп данных таблицы cms.menu_item: ~4 rows (приблизительно)
+INSERT IGNORE INTO `menu_item` (`id`, `menu_id`, `name`, `parent`, `position`, `link`) VALUES
+                                                                                           (1, 0, 'Home', 0, 0, '#'),
+                                                                                           (2, 0, 'About', 0, 0, '#'),
+                                                                                           (3, 0, 'Sample post', 0, 0, '#'),
+                                                                                           (4, 0, 'Contact', 0, 0, '#');
+
 -- Дамп структуры для таблица cms.page
 DROP TABLE IF EXISTS `page`;
 CREATE TABLE IF NOT EXISTS `page` (
@@ -66,7 +95,7 @@ INSERT IGNORE INTO `setting` (`id`, `name`, `key_field`, `value`) VALUES
                                                                       (1, 'Name site', 'name_site', 'cms'),
                                                                       (2, 'Description', 'description', 'Example description'),
                                                                       (3, 'Admin email', 'admin_email', 'gizya_85@mail.ru'),
-                                                                      (4, 'Language', 'language', 'english');
+                                                                      (4, 'Language', 'language', 'en');
 
 -- Дамп структуры для таблица cms.user
 DROP TABLE IF EXISTS `user`;
@@ -78,14 +107,19 @@ CREATE TABLE IF NOT EXISTS `user` (
                                       `hash` varchar(32) DEFAULT NULL,
                                       `data_reg` datetime DEFAULT (now()),
                                       PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Дамп данных таблицы cms.user: ~1 rows (приблизительно)
 INSERT IGNORE INTO `user` (`id`, `email`, `password`, `role`, `hash`, `data_reg`) VALUES
                                                                                       (1, 'gizya_85@mail.ru', 'b59c67bf196a4758191e42f76670ceba', NULL, 'b59c67bf196a4758191e42f76670ceba', '2025-08-17 14:52:15'),
-                                                                                      (31, 'test@admin.com', 'c81e728d9d4c2f636f067f89cc14862c', 'user', 'new', '2025-08-27 10:25:36'),
-                                                                                      (32, 'test@admin.com', 'e4da3b7fbbce2345d7772b0674a318d5', 'user', 'new', '2025-08-27 10:27:04'),
-                                                                                      (33, 'test@admin.com', 'e4da3b7fbbce2345d7772b0674a318d5', 'user', 'new', '2025-08-27 10:32:05');
+                                                                                      (77, 'test@admin.com', '1679091c5a880faf6fb5e6087eb1b2dc', 'user', 'new', '2025-09-02 05:43:00'),
+                                                                                      (78, 'test@admin.com', 'c4ca4238a0b923820dcc509a6f75849b', 'user', 'new', '2025-09-02 12:15:16'),
+                                                                                      (79, 'test@admin.com', 'd3d9446802a44259755d38e6d163e820', 'user', 'new', '2025-09-02 12:15:24'),
+                                                                                      (80, 'test@admin.com', 'c9f0f895fb98ab9159f51fd0297e236d', 'user', 'new', '2025-09-02 12:15:25'),
+                                                                                      (81, 'test@admin.com', 'a87ff679a2f3e71d9181a67b7542122c', 'user', 'new', '2025-09-02 12:41:58'),
+                                                                                      (82, 'test@admin.com', 'eccbc87e4b5ce2fe28308fd9f2a7baf3', 'user', 'new', '2025-09-02 12:42:14'),
+                                                                                      (83, 'test@admin.com', 'c81e728d9d4c2f636f067f89cc14862c', 'user', 'new', '2025-09-02 12:43:39'),
+                                                                                      (84, 'test@admin.com', 'a87ff679a2f3e71d9181a67b7542122c', 'user', 'new', '2025-09-02 14:29:17');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

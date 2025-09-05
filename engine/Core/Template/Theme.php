@@ -10,7 +10,7 @@ class Theme
         'header'  => 'header%s',      // 'header' или 'header-%s' (ниже логика с тире)
         'footer'  => 'footer%s',
         'sidebar' => 'sidebar%s',
-        'block'   => 'block-%s',      // для блоков всегда требуем имя
+        'block'   => '%s',      // для блоков всегда требуем имя
     ];
 
     private const THEMES_DIR = ROOT_DIR . '/content/themes';
@@ -211,6 +211,7 @@ class Theme
 //        }
 
         try {
+            $theme = $this;
             extract(array_merge($this->data, $data), EXTR_SKIP);
             include '/' . $file;
         } catch (\Throwable $e) {

@@ -12,7 +12,7 @@ class View
 
     protected $menu;
 
-    public function __construct(DI $di)
+    public function __construct(private DI $di)
     {
         $this->theme   = new Theme('default');
         $this->setting = new Setting($di);
@@ -35,6 +35,7 @@ class View
         }
         $this->theme->setData($vars);
         $theme = $this->theme;
+        $view = $this->di->get('view');
         extract($vars);
 
         ob_start();
@@ -62,5 +63,10 @@ class View
     private function getThemePath()
     {
         return ROOT_DIR . '/content/themes/default';
+    }
+
+    public function getTheme(): Theme
+    {
+        return $this->theme;
     }
 }

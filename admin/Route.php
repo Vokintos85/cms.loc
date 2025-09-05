@@ -27,4 +27,12 @@ $this->router->add('post-update', '/admin/posts/update', 'PostController:update'
 
 // Settings Routes (GET)
 $this->router->add('settings-general', '/admin/settings/general', 'SettingController:general');
-$this->router->add('settings-general-save', '/admin/settings/general', 'SettingController:saveGeneral', 'POST');
+$this->router->add('settings-appearance-themes', '/admin/settings/appearance/themes', 'SettingController:appearanceThemes');
+$this->router->add('settings-appearance-menus', '/admin/settings/appearance/menus', 'SettingController:appearanceMenus');
+
+// Settings Routes (POST)
+$this->router->add('setting-update', '/admin/settings/update', 'SettingController:updateSetting', 'POST');
+$this->router->add('setting-add-menu', '/admin/setting/ajaxMenuAdd', 'SettingController:ajaxMenuAdd', 'POST');
+$this->router->add('setting-add-menu-item', '/admin/setting/ajaxMenuAddItem', 'SettingController:ajaxMenuAddItem', 'POST');
+$this->router->add('setting-sort-menu-item', '/admin/setting/ajaxMenuSortItems', 'SettingController:ajaxMenuSortItems', 'POST');
+$this->router->add('setting-remove-menu-item', '/admin/setting/ajaxMenuRemoveItem', 'SettingController:ajaxMenuRemoveItem', 'POST');
