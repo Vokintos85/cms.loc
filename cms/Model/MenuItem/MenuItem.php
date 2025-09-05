@@ -1,16 +1,18 @@
 <?php
 
-namespace Cms\Controller\Model\Menu;
+namespace Cms\Model\MenuItem;
 
 use Engine\Core\Database\ActiveRecord;
 
-class Menu
+class MenuItem
 {
     use ActiveRecord;
 
-    protected $table = 'menu';
+    protected $table = 'menu_item';
 
     public $id;
+
+    public $menu_id;
 
     public $name;
 
@@ -31,7 +33,7 @@ class Menu
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -47,7 +49,7 @@ class Menu
     /**
      * @param mixed $name
      */
-    public function setName($name): void
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -63,7 +65,7 @@ class Menu
     /**
      * @param mixed $parent
      */
-    public function setParent($parent): void
+    public function setParent($parent)
     {
         $this->parent = $parent;
     }
@@ -79,7 +81,7 @@ class Menu
     /**
      * @param mixed $position
      */
-    public function setPosition($position): void
+    public function setPosition($position)
     {
         $this->position = $position;
     }
@@ -95,9 +97,24 @@ class Menu
     /**
      * @param mixed $link
      */
-    public function setLink($link): void
+    public function setLink($link)
     {
         $this->link = $link;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getMenuId()
+    {
+        return $this->menu_id;
+    }
+
+    /**
+     * @param mixed $menu_id
+     */
+    public function setMenuId($menu_id)
+    {
+        $this->menu_id = $menu_id;
+    }
 }

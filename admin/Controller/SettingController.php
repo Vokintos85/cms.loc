@@ -92,6 +92,22 @@ class SettingController extends AdminController
         }
     }
 
+    public function ajaxMenuUpdateItem()
+    {
+        $params = $this->request->post;
+
+        $menuItemModel = $this->load->model('MenuItem', false, 'Cms');
+
+        if (isset($params['item_id']) && strlen($params['item_id']) > 0) {
+            $menuItemModel->repository->update([
+                'item_id' => $params['item_id'],
+                'field' => $params['field'],
+                'value' => $params['value'],
+            ]);
+
+        }
+    }
+
     public function ajaxMenuRemoveItem()
     {
         $params = $this->request->post;

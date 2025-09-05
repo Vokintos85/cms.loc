@@ -29,6 +29,7 @@ var menu = {
             }
         });
     },
+
     addItem: function(menuId) {
         var formData = new FormData();
 
@@ -57,7 +58,7 @@ var menu = {
     },
 
     updateItem: function(itemId, field, element) {
-        var formData = new FormData();
+        const formData = new FormData();
 
         formData.append('item_id', itemId);
         formData.append('field', field);
@@ -67,9 +68,9 @@ var menu = {
             return false;
         }
 
-        var _this = this;
+        const _this = this;
         $.ajax({
-            url: '/backend/settings/ajaxMenuUpdateItem/',
+            url: '/admin/setting/ajaxMenuUpdateItem',
             type: this.ajaxMethod,
             data: formData,
             processData: false,

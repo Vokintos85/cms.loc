@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Controller\Model\MenuItem;
+namespace Cms\Model\MenuItem;
 
 use Engine\Model;
 

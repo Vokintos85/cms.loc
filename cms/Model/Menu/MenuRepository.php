@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Controller\Model\Menu;
+namespace Cms\Model\Menu;
 
 use Engine\Model;
 use PDO;

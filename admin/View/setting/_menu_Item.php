@@ -2,17 +2,29 @@
     <!-- Название -->
     <div class="d-flex align-items-center gap-2 flex-fill">
         <i class="icon-pencil icons text-body-secondary"></i>
-        <input class="form-control form-control-sm menu-item-field" type="text"
-               value="<?= $item->name ?>" placeholder="Name"
-               data-id="<?= $item->id ?>" data-field="name">
+        <input
+           class="form-control form-control-sm menu-item-field"
+           type="text"
+           value="<?= $item->name ?>"
+           placeholder="Name"
+           data-id="<?= $item->id ?>"
+           data-field="name"
+           onchange="menu.updateItem(<?= $item->id ?>, 'name', this)"
+        >
     </div>
 
     <!-- Ссылка -->
     <div class="d-flex align-items-center gap-2 flex-fill">
         <i class="icon-link icons text-body-secondary"></i>
-        <<input class="form-control form-control-sm menu-item-field" type="text"
-                value="<?= $item->link ?>" placeholder="URL"
-                data-id="<?= $item->id ?>" data-field="link">
+        <input
+           class="form-control form-control-sm menu-item-field"
+           type="text"
+           value="<?= $item->link ?>"
+           placeholder="URL"
+           data-id="<?= $item->id ?>"
+           data-field="link"
+           onchange="menu.updateItem(<?= $item->id ?>, 'link', this)"
+        >
     </div>
 
     <!-- Действия -->
