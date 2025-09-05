@@ -2,8 +2,7 @@
 
 namespace Engine\Core\Template;
 
-use Engine\DI\DI;
-use Cms\Model\Menu\MenuRepository;
+use Cms\Controller\Model\Menu\MenuRepository;
 
 class Menu
 {
