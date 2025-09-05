@@ -2,15 +2,17 @@
     <!-- Название -->
     <div class="d-flex align-items-center gap-2 flex-fill">
         <i class="icon-pencil icons text-body-secondary"></i>
-        <input class="form-control form-control-sm" type="text"
-               value="<?= $item->name ?>" placeholder="Name">
+        <input class="form-control form-control-sm menu-item-field" type="text"
+               value="<?= $item->name ?>" placeholder="Name"
+               data-id="<?= $item->id ?>" data-field="name">
     </div>
 
     <!-- Ссылка -->
     <div class="d-flex align-items-center gap-2 flex-fill">
         <i class="icon-link icons text-body-secondary"></i>
-        <input class="form-control form-control-sm" type="text"
-               value="<?= $item->link ?>" placeholder="URL">
+        <<input class="form-control form-control-sm menu-item-field" type="text"
+                value="<?= $item->link ?>" placeholder="URL"
+                data-id="<?= $item->id ?>" data-field="link">
     </div>
 
     <!-- Действия -->

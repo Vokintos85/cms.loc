@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Model\MenuItem;
+namespace Cms\Controller\Model\MenuItem;
 
 use Engine\Model;
 
@@ -54,6 +54,29 @@ class MenuItemRepository extends Model
         $menuItemId = $menuItem->save();
 
         return $menuItemId;
+    }
+
+    /**
+     * @param $params
+     * @return bool|int|string|void
+     */
+    public function update($params = [])
+    {
+        if (empty($params)){
+            return 0;
+        }
+
+        $menuItem = new MenuItem($params['item_id']);
+
+        if($params['field'] == self::FIELD_NAME){
+            $menuItem->setName($params['value']);
+
+            if ($params['field'] == self::FIELD_LINK){
+                $menuItem->setLink($params['value']);
+            }
+
+            return $menuItem->save();
+        }
     }
 
     /**
