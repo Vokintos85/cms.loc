@@ -1,163 +1,173 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Engine\Core\Database;
 
 class QueryBuilder
 {
-    /**
-     * @var array
-     */
-    protected $sql = [];
+    /** @var array<string, mixed> */
+    protected array $sql = [];
 
-    /**
-     * @var array
-     */
-    public $values = [];
+    /** @var list<mixed> */
+    public array $values = [];
 
-    /**
-     * @param string $fields
-     * @return $this
-     */
     public function select(string $fields = '*'): static
     {
         $this->reset();
         $this->sql['select'] = "SELECT {$fields} ";
-
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function delete()
+    public function delete(): static
     {
         $this->reset();
         $this->sql['delete'] = "DELETE ";
-
         return $this;
     }
 
-    /**
-     * @param $table
-     * @return $this
-     */
-    public function from($table): static
+    public function from(string $table): static
     {
         $this->sql['from'] = "FROM {$table} ";
-
         return $this;
     }
 
-    /**
-     * @param string $column
-     * @param string $value
-     * @param string $operator
-     * @return $this
-     */
     public function where(string $column, string $value, string $operator = '='): static
     {
-        $this->sql['where'][] = "{$column} {$operator} ?";
-        $this->values[] = $value;
+        // Простая защита от мусора в операторе
+        $safeOperator = in_array($operator, ['=', '!=', '<>', '>', '>=', '<', '<=', 'LIKE', 'ILIKE', 'IN', 'NOT IN'], true)
+            ? $operator
+            : '=';
+
+        if (!isset($this->sql['where'])) {
+            $this->sql['where'] = [];
+        }
+
+        // Для IN/NOT IN поддержим CSV в value: "a,b,c" -> (?, ?, ?)
+        if (($safeOperator === 'IN' || $safeOperator === 'NOT IN') && str_contains($value, ',')) {
+            $parts = array_map('trim', explode(',', $value));
+            $placeholders = implode(', ', array_fill(0, count($parts), '?'));
+            $this->sql['where'][] = sprintf('%s %s (%s)', $column, $safeOperator, $placeholders);
+            foreach ($parts as $p) {
+                $this->values[] = $p;
+            }
+        } else {
+            $this->sql['where'][] = sprintf('%s %s ?', $column, $safeOperator);
+            $this->values[] = $value;
+        }
 
         return $this;
     }
 
-    /**
-     * @param $field
-     * @param $order
-     * @return $this
-     */
-    public function orderBy($field, $order)
+    public function orderBy(string $field, string $order): static
     {
-        $this->sql['order_by'] = "ORDER BY {$field} {$order}";
-
+        $ord = strtoupper($order) === 'DESC' ? 'DESC' : 'ASC';
+        $this->sql['order_by'] = "ORDER BY {$field} {$ord}";
         return $this;
     }
 
-    /**
-     * @param $number
-     * @return $this
-     */
-    public function limit($number)
+    public function limit(int $number): static
     {
-        $this->sql['limit'] = " LIMIT {$number}";
-
+        $n = max(0, $number);
+        $this->sql['limit'] = " LIMIT {$n}";
         return $this;
     }
 
-    /**
-     * @param $table
-     * @return $this
-     */
-    public function update($table): static
+    public function update(string $table): static
     {
         $this->reset();
         $this->sql['update'] = "UPDATE {$table} ";
-
         return $this;
     }
 
-    public function insert($table): static
+    public function insert(string $table): static
     {
         $this->reset();
         $this->sql['insert'] = "INSERT INTO {$table} ";
-
         return $this;
     }
 
-    /**
-     * @param array $data
-     * @return $this
-     */
     public function set(array $data = []): static
     {
-        $this->sql['set'] .= "SET ";
+        // Не используем ".=" — инициализируем ключ детерминированно
+        $this->sql['set'] = 'SET ';
 
-        if(!empty($data)) {
+        if (!empty($data)) {
+            $pairs = [];
             foreach ($data as $key => $value) {
-                $this->sql['set'] .= "{$key} = ?";
-                if (next($data)) {
-                    $this->sql['set'] .= ", ";
-                }
-                $this->values[]    = $value;
+                $pairs[] = sprintf('%s = ?', (string)$key);
+                $this->values[] = $value;
             }
+            $this->sql['set'] .= implode(', ', $pairs);
         }
 
         return $this;
     }
 
     /**
-     * @return string
+     * Собирает SQL и ИНЛАЙНИТ значения вместо плейсхолдеров.
+     * Семантика метода сохранена (без аргументов, возвращает строку SQL).
      */
-    public function sql()
+    public function sql(): string
     {
-        $sql = '';
+        $parts = [];
 
-        if(!empty($this->sql)) {
-            foreach ($this->sql as $key => $value) {
-                if ($key == 'where') {
-                    $sql .= ' WHERE ';
-                    foreach ($value as $where) {
-                        $sql .= $where;
-                        if (count($value) > 1 and next($value)) {
-                            $sql .= ' AND ';
-                        }
-                    }
-                } else {
-                    $sql .= $value;
-                }
-            }
+        if (isset($this->sql['select'])) { $parts[] = $this->sql['select']; }
+        if (isset($this->sql['delete'])) { $parts[] = $this->sql['delete']; }
+        if (isset($this->sql['insert'])) { $parts[] = $this->sql['insert']; }
+        if (isset($this->sql['update'])) { $parts[] = $this->sql['update']; }
+        if (isset($this->sql['set']))    { $parts[] = $this->sql['set']; }
+        if (isset($this->sql['from']))   { $parts[] = $this->sql['from']; }
+
+        if (!empty($this->sql['where']) && is_array($this->sql['where'])) {
+            $parts[] = 'WHERE ' . implode(' AND ', $this->sql['where']);
         }
 
-        return $sql;
+        if (isset($this->sql['order_by'])) { $parts[] = $this->sql['order_by']; }
+        if (isset($this->sql['limit']))    { $parts[] = $this->sql['limit']; }
+
+        $withPlaceholders = trim(implode(' ', array_map('trim', $parts)));
+
+        if ($withPlaceholders === '') {
+            return '';
+        }
+
+        // Инлайним значения вместо `?`
+        $i = 0;
+        $final = preg_replace_callback('/\?/', function () use (&$i) {
+            $value = $this->values[$i] ?? null;
+            $i++;
+            return $this->quoteValue($value);
+        }, $withPlaceholders) ?? $withPlaceholders;
+
+        return $final;
+    }
+
+    /** Reset Builder */
+    public function reset(): void
+    {
+        $this->sql = [];
+        $this->values = [];
     }
 
     /**
-     * Reset Builder
+     * Примитивное экранирование значений для инлайна.
+     * Производственный код должен использовать подготовленные выражения драйвера.
      */
-    public function reset(): void
+    protected function quoteValue(mixed $value): string
     {
-        $this->sql    = [];
-        $this->values = [];
+        if ($value === null) {
+            return 'NULL';
+        }
+        if (is_bool($value)) {
+            return $value ? 'TRUE' : 'FALSE';
+        }
+        if (is_int($value) || is_float($value)) {
+            // Числа оставляем как есть
+            return (string)$value;
+        }
+        // Строки — экранируем одинарные кавычки
+        $escaped = str_replace("'", "''", (string)$value);
+        return "'{$escaped}'";
     }
 }

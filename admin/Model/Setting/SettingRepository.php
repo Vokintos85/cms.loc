@@ -30,7 +30,7 @@ class SettingRepository extends Model
 
         $result = $this
             ->db
-            ->query($sql, $this->queryBuilder->values)
+            ->query($sql)
             ->fetch(\PDO::FETCH_OBJ);
 
 

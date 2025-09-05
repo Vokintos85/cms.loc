@@ -35,7 +35,7 @@ class MenuItemRepository extends Model
             ->orderBy('position', 'ASC')
             ->sql();
 
-        return $this->db->query($sql, $this->queryBuilder->values)->fetchAll(\PDO::FETCH_OBJ);
+        return $this->db->query($sql)->fetchAll(\PDO::FETCH_OBJ);
     }
 
     /**
@@ -91,7 +91,7 @@ class MenuItemRepository extends Model
             ->where('id', $itemId)
             ->sql();
 
-        return $this->db->query($sql, $this->queryBuilder->values)->execute();
+        return $this->db->query($sql)->execute();
     }
 
     /**
