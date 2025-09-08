@@ -42,30 +42,44 @@
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto nav-pills gap-1 py-2 py-md-0">
-                    <li class="nav-item ">
-                        <a class="nav-link d-flex align-items-center gap-2 " aria-current="page" href="#">
-                            <i class="icon-speedometer icons"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="/admin/pages">
-                            <i class="icon-doc icons"></i>
-                            <span>Pages</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="/admin/posts">
-                            <i class="icon-pencil icons"></i>
-                            <span>Posts</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="/admin/settings/general">
-                            <i class="icon-equalizer icons"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
+                    <?php
+                    $menuItems = [
+                            [
+                                    'url' => '/admin',
+                                    'icon' => 'icon-speedometer icons',
+                                    'title' => 'Home',
+                                    'active' => true
+                            ],
+                            [
+                                    'url' => '/admin/pages',
+                                    'icon' => 'icon-doc icons',
+                                    'title' => 'Pages',
+                                    'active' => false
+                            ],
+                            [
+                                    'url' => '/admin/posts',
+                                    'icon' => 'icon-pencil icons',
+                                    'title' => 'Posts',
+                                    'active' => false
+                            ],
+                            [
+                                    'url' => '/admin/settings/general',
+                                    'icon' => 'icon-equalizer icons',
+                                    'title' => 'Settings',
+                                    'active' => false
+                            ]
+                    ];
+
+                    foreach ($menuItems as $item) {
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="' . $item['url'] . '">
+                                <i class="' . $item['icon'] . '"></i>
+                                <span>' . $item['title'] . '</span>
+                            </a>
+                        </li>';
+                    }
+                    ?>
                 </ul>
             </div>
 
@@ -79,4 +93,3 @@
         </div>
     </nav>
 </header>
-

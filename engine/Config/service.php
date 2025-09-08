@@ -9,5 +9,4 @@ return [
     Engine\Service\Auth\Provider::class,
     Engine\Service\Load\Provider::class,
     Engine\Service\Customize\Provider::class,
-
 ];
