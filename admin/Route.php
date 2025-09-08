@@ -37,3 +37,4 @@ $this->router->add('setting-add-menu-item', '/admin/setting/ajaxMenuAddItem', 'S
 $this->router->add('setting-sort-menu-item', '/admin/setting/ajaxMenuSortItems', 'SettingController:ajaxMenuSortItems', 'POST');
 $this->router->add('setting-remove-menu-item', '/admin/setting/ajaxMenuRemoveItem', 'SettingController:ajaxMenuRemoveItem', 'POST');
 $this->router->add('setting-update-menu-item', '/admin/setting/ajaxMenuUpdateItem', 'SettingController:ajaxMenuUpdateItem', 'POST');
+$this->router->add('setting-theme-activate', '/admin/settings/appearance/themes/activate', 'SettingController:themeActive', 'POST');

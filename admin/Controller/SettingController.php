@@ -28,14 +28,12 @@ class SettingController extends AdminController
 
     public function appearanceThemes()
     {
-//        $this->load->model('Menu', false, 'Cms');
-//        $this->load->model('MenuItem', false, 'Cms');
-//
-//        $this->data['menuId']   = $this->request->get['menu_id'];
-//        $this->data['menus']    = $this->model->menu->getList();
-//        $this->data['editMenu'] = $this->model->menuItem->getItems($this->data['menuId']);
+        $settingsModel = $this->load->model('Setting');
 
-        $this->view->render('setting/appearance_themes');
+        $this->view->render('setting/appearance_themes', [
+            'theme_active' => $settingsModel->repository->getSettingValue('theme'),
+            'themes' => $this->di->get('customize')->getThemes(),
+        ]);
     }
 
     public function appearanceMenus()
@@ -48,6 +46,16 @@ class SettingController extends AdminController
         $this->data['editMenu'] = $menuItemModel->repository->getItems($this->data['menuId'] ?? 0);
 
         $this->view->render('setting/appearance_menus', $this->data);
+    }
+
+    public function themeActive()
+    {
+        $params = $this->request->post;
+
+        $settingsModel = $this->load->model('Setting');
+        $settingsModel->repository->update('theme', $params['theme'] ?? 'default');
+
+        header('Location: /admin/settings/appearance/themes');
     }
 
     public function themes()

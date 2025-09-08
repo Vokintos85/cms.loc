@@ -3,6 +3,8 @@
 namespace Engine\Core\Template;
 
 use Engine\Core\Config\Config;
+use Engine\DI\DI;
+use Engine\Load;
 
 class Theme
 {
@@ -17,7 +19,7 @@ class Theme
     private const CORE_FALLBACK_DIR = ROOT_DIR . '/View'; // старые шаблоны системы
 
     /** @var string Имя активной темы */
-    private string $themeName;
+    private ?string $themeName = null;
 
     /** @var array<string,string> Кэш найденных путей шаблонов */
     private static array $templateCache = [];
@@ -30,27 +32,14 @@ class Theme
 
     private static array $cache = [];
 
-    public function __construct(?string $themeName = null)
+    public function __construct(private DI $di)
     {
-        $this->themeName = $themeName ?: self::getTheme();
-    }
-
-    /** Смена темы на лету (например, по домену/тенанту) */
-    public function setTheme(string $name): void
-    {
-        $this->themeName = $name;
-    }
-
-    /** Текущая тема */
-    public function getThemeName(): string
-    {
-        return $this->themeName;
     }
 
     /** URL базового каталога текущей темы (папка public) */
     public function getUrl(): string
     {
-        return '/content/themes/' . $this->themeName;
+        return '/content/themes/' . $this->getTheme();
     }
 
     public static function title(): string
@@ -78,7 +67,7 @@ class Theme
         }
 
         // Иначе: /content/themes/<theme>/public/<file>?v=<themeVersion>
-        $meta = ThemeRegistry::get($this->themeName) ?? ['url' => '/content/themes/'.$this->themeName, 'version' => null];
+        $meta = ThemeRegistry::get($this->getTheme()) ?? ['url' => '/content/themes/'.$this->getTheme(), 'version' => null];
         $base = rtrim($meta['url'], '/') . '/public/' . $assetPath;
 
         return $base . $this->versionSuffix($meta['version']);
@@ -90,24 +79,24 @@ class Theme
             return '?v=' . rawurlencode($version);
         }
         // dev-помощь: при отсутствии версии — инвалидируем по mtime файла, если доступен
-        $fsPath = self::THEMES_DIR . '/' . $this->themeName . '/public/' . ltrim(parse_url($version ?? '', PHP_URL_PATH) ?? '', '/');
+        $fsPath = self::THEMES_DIR . '/' . $this->getTheme() . '/public/' . ltrim(parse_url($version ?? '', PHP_URL_PATH) ?? '', '/');
         return is_file($fsPath) ? ('?t=' . filemtime($fsPath)) : '';
     }
 
     private function resolveAssetFromManifest(string $assetPath): ?string
     {
-        $manifestPath = self::THEMES_DIR . '/' . $this->themeName . '/public/manifest.json';
-        if (!isset(self::$assetManifestCache[$this->themeName])) {
-            self::$assetManifestCache[$this->themeName] = is_file($manifestPath)
+        $manifestPath = self::THEMES_DIR . '/' . $this->getTheme() . '/public/manifest.json';
+        if (!isset(self::$assetManifestCache[$this->getTheme()])) {
+            self::$assetManifestCache[$this->getTheme()] = is_file($manifestPath)
                 ? (string)file_get_contents($manifestPath)
                 : '';
         }
 
-        if (self::$assetManifestCache[$this->themeName] === '') {
+        if (self::$assetManifestCache[$this->getTheme()] === '') {
             return null;
         }
 
-        $map = json_decode(self::$assetManifestCache[$this->themeName], true);
+        $map = json_decode(self::$assetManifestCache[$this->getTheme()], true);
         if (!is_array($map)) {
             return null;
         }
@@ -121,7 +110,7 @@ class Theme
         $file = is_array($entry) ? ($entry['file'] ?? null) : $entry;
         if (!$file) return null;
 
-        $meta = ThemeRegistry::get($this->themeName) ?? ['url' => '/content/themes/'.$this->themeName, 'version' => null];
+        $meta = ThemeRegistry::get($this->getTheme()) ?? ['url' => '/content/themes/'.$this->getTheme(), 'version' => null];
         $url  = rtrim($meta['url'], '/') . '/public/' . ltrim($file, '/');
 
         return $url . $this->versionSuffix($meta['version']);
@@ -198,7 +187,8 @@ class Theme
             $relative .= '.php';
         }
 
-        $cacheKey = $this->themeName . '::' . $relative;
+        $cacheKey = $this->getTheme() . '::' . $relative;
+
         $file = self::$templateCache[$cacheKey] ?? null;
 
         if (!$file) {
@@ -229,7 +219,8 @@ class Theme
         $paths = [];
 
         // 1) child (текущая)
-        $child = ThemeRegistry::get($this->themeName);
+        $child = ThemeRegistry::get($this->getTheme());
+
         if ($child) {
             $paths[] = $this->safeJoin($child['path'], $isRawPath ? '' : 'templates', $relative);
 
@@ -302,8 +293,17 @@ class Theme
         return self::THEMES_DIR . '/' . self::getTheme();
     }
 
-    public static function getTheme(): string
+    public function getTheme()
     {
-        return (string) Config::item('defaultTheme', 'main');
+        if ($this->themeName) {
+            return $this->themeName;
+        }
+
+        /** @var Load $load */
+        $load = $this->di->get('load');
+
+        $settingsModel = $load->model('Setting', false, 'Admin');
+
+        return $this->themeName = $settingsModel->repository->getSettingValue('theme');
     }
 }

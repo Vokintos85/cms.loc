@@ -7,13 +7,10 @@ use Engine\Core\Customize\Customize;
 
 class Provider extends AbstractProvider
 {
-    public $serviceName = 'customize';
+    public string $serviceName = 'customize';
 
     public function init(): void
     {
-        $customize = new Customize($this->di);
-
-        $this->di->set($this->serviceName, $customize);
-
+        $this->di->set($this->serviceName, new Customize($this->di));
     }
 }
