@@ -2,7 +2,6 @@
 
 namespace Engine\Core\Template;
 
-use Engine\DI\DI;
 use Cms\Model\Menu\MenuRepository;
 
 class Menu

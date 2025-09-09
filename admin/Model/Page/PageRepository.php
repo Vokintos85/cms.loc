@@ -23,17 +23,7 @@ class PageRepository extends Model
             ->from('page')
             ->where('id', $id);
 
-        return $this->db->query($qb->sql(), $qb->params())->fetch();
-    }
-
-    public function test()
-    {
-        $user = new User();
-        $user->setEmail('test@admin.com');
-        $user->setPassword(md5(rand(1, 10)));
-        $user->setRole('user');
-        $user->setHash('new');
-        $user->save();
+        return $this->db->query($qb->sql())->fetch();
     }
 
     /**

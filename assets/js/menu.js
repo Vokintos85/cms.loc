@@ -29,6 +29,7 @@ var menu = {
             }
         });
     },
+
     addItem: function(menuId) {
         var formData = new FormData();
 
@@ -55,6 +56,36 @@ var menu = {
             }
         });
     },
+
+    updateItem: function(itemId, field, element) {
+        const formData = new FormData();
+
+        formData.append('item_id', itemId);
+        formData.append('field', field);
+        formData.append('value', $(element).val());
+
+        if (itemId < 1) {
+            return false;
+        }
+
+        const _this = this;
+        $.ajax({
+            url: '/admin/setting/ajaxMenuUpdateItem',
+            type: this.ajaxMethod,
+            data: formData,
+            processData: false,
+            contentType: false,
+            beforeSend: function(){
+
+            },
+            success: function(result){
+                if (result) {
+
+                }
+            }
+        });
+    },
+
     removeItem: function(itemId) {
 
         if(!confirm('Delete the menu item?')) {

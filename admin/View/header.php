@@ -28,12 +28,12 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar navbar-expand-md bg-body border-bottom sticky-top shadow-sm" data-bs-theme="light">
         <div class="container">
-            <a class="navbar-brand" href="#">Admin CMS</a>
+            <a class="navbar-brand fw-semibold text-body" href="#">Admin CMS</a>
 
             <!-- Burger -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,34 +41,53 @@
 
             <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            <i class="icon-speedometer icons"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/pages">
-                            <i class="icon-doc icons"></i> Pages
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/posts">
-                            <i class="icon-pencil icons"></i> Posts
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/settings/general">
-                            <i class="icon-equalizer icons"></i> Settings
-                        </a>
-                    </li>
+                <ul class="navbar-nav me-auto nav-pills gap-1 py-2 py-md-0">
+                    <?php
+                    $menuItems = [
+                            [
+                                    'url' => '/admin',
+                                    'icon' => 'icon-speedometer icons',
+                                    'title' => 'Home',
+                                    'active' => true
+                            ],
+                            [
+                                    'url' => '/admin/pages',
+                                    'icon' => 'icon-doc icons',
+                                    'title' => 'Pages',
+                                    'active' => false
+                            ],
+                            [
+                                    'url' => '/admin/posts',
+                                    'icon' => 'icon-pencil icons',
+                                    'title' => 'Posts',
+                                    'active' => false
+                            ],
+                            [
+                                    'url' => '/admin/settings/general',
+                                    'icon' => 'icon-equalizer icons',
+                                    'title' => 'Settings',
+                                    'active' => false
+                            ]
+                    ];
+
+                    foreach ($menuItems as $item) {
+                        echo '
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center gap-2" href="' . $item['url'] . '">
+                                <i class="' . $item['icon'] . '"></i>
+                                <span>' . $item['title'] . '</span>
+                            </a>
+                        </li>';
+                    }
+                    ?>
                 </ul>
             </div>
 
             <!-- Right toolbar -->
-            <div class="right-toolbar">
-                <a href="/admin/logout">
-                    <i class="icon-logout icons"></i> Logout
+            <div class="right-toolbar d-flex align-items-center ms-2">
+                <a class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2" href="/admin/logout">
+                    <i class="icon-logout icons"></i>
+                    <span>Logout</span>
                 </a>
             </div>
         </div>

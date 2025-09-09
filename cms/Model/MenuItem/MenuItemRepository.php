@@ -35,7 +35,7 @@ class MenuItemRepository extends Model
             ->orderBy('position', 'ASC')
             ->sql();
 
-        return $this->db->query($sql, $this->queryBuilder->values)->fetchAll(\PDO::FETCH_OBJ);
+        return $this->db->query($sql)->fetchAll(\PDO::FETCH_OBJ);
     }
 
     /**
@@ -57,6 +57,29 @@ class MenuItemRepository extends Model
     }
 
     /**
+     * @param $params
+     * @return bool|int|string|void
+     */
+    public function update($params = [])
+    {
+        if (empty($params)){
+            return 0;
+        }
+
+        $menuItem = new MenuItem($params['item_id']);
+
+        if($params['field'] == self::FIELD_NAME){
+            $menuItem->setName($params['value']);
+
+            if ($params['field'] == self::FIELD_LINK){
+                $menuItem->setLink($params['value']);
+            }
+
+            return $menuItem->save();
+        }
+    }
+
+    /**
      * @param int $itemId
      * @return mixed
      */
@@ -68,7 +91,7 @@ class MenuItemRepository extends Model
             ->where('id', $itemId)
             ->sql();
 
-        return $this->db->query($sql, $this->queryBuilder->values)->execute();
+        return $this->db->query($sql)->execute();
     }
 
     /**

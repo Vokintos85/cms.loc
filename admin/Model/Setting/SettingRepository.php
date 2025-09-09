@@ -9,6 +9,7 @@ class SettingRepository extends Model
     {
         $sql = $this->queryBuilder->select()
             ->from('setting')
+            ->where('section', 'general')
             ->orderBy('id', 'ASC')
             ->sql();
 
@@ -17,20 +18,20 @@ class SettingRepository extends Model
     }
 
     /**
-     * @param $keyfield
-     * @return null
+     * @param string $keyField
+     * @return string|null
      */
-    public function getSettingValue($keyfield)
+    public function getSettingValue(string $keyField): null|string
     {
         $sql = $this->queryBuilder
             ->select('value')
             ->from('setting')
-            ->where('key_field', $keyfield)
+            ->where('key_field', $keyField)
             ->sql();
 
         $result = $this
             ->db
-            ->query($sql, $this->queryBuilder->values)
+            ->query($sql)
             ->fetch(\PDO::FETCH_OBJ);
 
 

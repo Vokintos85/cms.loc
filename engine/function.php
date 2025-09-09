@@ -60,3 +60,33 @@ function languages()
 
     return $languages;
 }
+
+function getThemes()
+{
+    $themesPath = path_content('themes');
+    $list       = scandir($themesPath);
+    $themes     = [];
+
+    if (!empty($list)) {
+        foreach ($list as $dir) {
+            // Ignore hidden directories.
+            if ($dir === '.' || $dir === '..') continue;
+
+            $pathThemeDir = $themesPath . '/' . $dir;
+            $pathConfig   = $pathThemeDir . '/theme.json';
+            $pathScreen   = '/content/themes/' . $dir . '/screen.jpg';
+
+            if (is_dir($pathThemeDir) && is_file($pathConfig)) {
+                $config = file_get_contents($pathConfig);
+                $info   = json_decode($config);
+
+                $info->screen   = $pathScreen;
+                $info->dirTheme = $dir;
+
+                $themes[] = $info;
+            }
+        }
+    }
+
+    return $themes;
+}

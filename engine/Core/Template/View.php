@@ -14,7 +14,7 @@ class View
 
     public function __construct(private DI $di)
     {
-        $this->theme   = new Theme('default');
+        $this->theme = new Theme($di);
         $this->setting = new Setting($di);
         $this->menu = new Menu($di);
     }
@@ -33,9 +33,11 @@ class View
                 sprintf('Template "%s" not found in "%s"', $template, $templatePath)
             );
         }
+
         $this->theme->setData($vars);
         $theme = $this->theme;
         $view = $this->di->get('view');
+
         extract($vars);
 
         ob_start();
@@ -54,7 +56,7 @@ class View
     private function getTemplatePath(string $template, ?string $env = null): string
     {
         $basePath = $env === 'Cms'
-            ? '/content/themes/default/'
+            ? '/content/themes/' . $this->getTheme()->getTheme() . '/'
             : '/View/';
 
         return ROOT_DIR . $basePath . $template . '.php';
