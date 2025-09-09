@@ -1,4 +1,4 @@
-<?php $this->theme->header(); ?>
+<?php $view->render('header'); ?>
 
     <main>
         <div class="container">
@@ -68,4 +68,4 @@
         };
     </script>
 
-<?php $this->theme->footer(); ?>
+<?php $view->render('footer'); ?>

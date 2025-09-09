@@ -2,3 +2,7 @@
     width: 200px;
     text-align: right;
 }
+
+.nav-item--active {
+    background-color: #f1f1f1;
+}

@@ -3,6 +3,7 @@
   "name": "vokintos/projectcms",
   "autoload": {
     "psr-4": {
+      "Plugin\\": "content/plugins/",
       "Engine\\": "engine",
       "Cms\\": "cms",
       "Admin\\": "admin"

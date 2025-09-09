@@ -6,28 +6,37 @@ class Config
     /**
      * @var array
      */
-    protected $config = [
+    protected array $config = [
         'dashboardMenu' => [
-            'home' => [
-                'classIcon' => 'icon-speedometer icons',
-                'urlPath'   => '/backend/',
-                'title'     => 'Home'
+            [
+                'url' => '/admin',
+                'icon' => 'icon-speedometer icons',
+                'title' => 'Home',
+                'active' => true
             ],
-            'resource' => [
-                'classIcon' => 'folder outline icon',
-                'urlPath'   => '#',
-                'title'     => 'Resources',
-                'parents'   => []
+            [
+                'url' => '/admin/pages',
+                'icon' => 'icon-doc icons',
+                'title' => 'Pages',
+                'active' => false
             ],
-            'plugins' => [
-                'classIcon' => 'icon-wrench icons',
-                'urlPath'   => '/backend/plugins/',
-                'title'     => 'Plugins'
+            [
+                'url' => '/admin/posts',
+                'icon' => 'icon-pencil icons',
+                'title' => 'Posts',
+                'active' => false
             ],
-            'settings' => [
-                'classIcon' => 'icon-equalizer icons',
-                'urlPath'   => '/backend/settings/general/',
-                'title'     => 'Settings'
+            [
+                'url' => '/admin/plugins',
+                'icon' => 'icon-puzzle icons',
+                'title' => 'Plugins',
+                'active' => false
+            ],
+            [
+                'url' => '/admin/settings/general',
+                'icon' => 'icon-equalizer icons',
+                'title' => 'Settings',
+                'active' => false
             ]
         ],
         'settingMenu' => [

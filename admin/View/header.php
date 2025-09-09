@@ -10,17 +10,22 @@
     <title>Админ-панель</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="/assets/css/dashboard.css" rel="stylesheet">
 
     <!-- simplelineicons for this template -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 
     <!-- Redactor CSS -->
     <link rel="stylesheet" href="/assets/js/plugins/redactor/redactor.css">
@@ -43,39 +48,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav me-auto nav-pills gap-1 py-2 py-md-0">
                     <?php
-                    $menuItems = [
-                            [
-                                    'url' => '/admin',
-                                    'icon' => 'icon-speedometer icons',
-                                    'title' => 'Home',
-                                    'active' => true
-                            ],
-                            [
-                                    'url' => '/admin/pages',
-                                    'icon' => 'icon-doc icons',
-                                    'title' => 'Pages',
-                                    'active' => false
-                            ],
-                            [
-                                    'url' => '/admin/posts',
-                                    'icon' => 'icon-pencil icons',
-                                    'title' => 'Posts',
-                                    'active' => false
-                            ],
-                            [
-                                    'url' => '/admin/settings/general',
-                                    'icon' => 'icon-equalizer icons',
-                                    'title' => 'Settings',
-                                    'active' => false
-                            ]
-                    ];
 
-                    foreach ($menuItems as $item) {
+                    /**
+                     * @var \Engine\Core\Customize\Customize $customize
+                     */
+
+                    foreach (($customize?->getAdminMenuItems() ?? []) as $adminMenuItem) {
                         echo '
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="' . $item['url'] . '">
-                                <i class="' . $item['icon'] . '"></i>
-                                <span>' . $item['title'] . '</span>
+                        <li class="nav-item ">
+                            <a class="nav-link d-flex align-items-center gap-2 " href="' . $adminMenuItem['url'] . '">
+                                <i class="' . $adminMenuItem['icon'] . '"></i>
+                                <span>' . $adminMenuItem['title'] . '</span>
                             </a>
                         </li>';
                     }

@@ -33,7 +33,7 @@ class Customize
     /**
      * @return Config
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         return $this->config;
     }
@@ -42,22 +42,7 @@ class Customize
     {
     }
 
-    /**
-     * @return Customize|null
-     */
-    static public function instance()
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * @return mixed|null
-     */
-    public function getAdminMenuItems()
+    public function getAdminMenuItems(): array
     {
         return $this->getConfig()->get('dashboardMenu');
     }

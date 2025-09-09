@@ -37,6 +37,7 @@ class View
         $this->theme->setData($vars);
         $theme = $this->theme;
         $view = $this->di->get('view');
+        $customize = $this->di->get('customize');
 
         extract($vars);
 

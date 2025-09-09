@@ -5,7 +5,7 @@
 $this->router->add('login-admin', '/admin/login', 'LoginController:form');
 $this->router->add('logout', '/admin/logout', 'LogoutController:logout');
 $this->router->add('auth-admin', '/admin/auth', 'LoginController:authAdmin', 'POST');
-$this->router->add('dashboard', '/admin/', 'DashboardController:index');
+$this->router->add('dashboard', '/admin', 'DashboardController:index');
 
 // Pages Routes (GET)
 $this->router->add('pages', '/admin/pages', 'PageController:listing');
@@ -20,6 +20,8 @@ $this->router->add('page-update', '/admin/pages/update', 'PageController:update'
 $this->router->add('posts', '/admin/posts', 'PostController:listing');
 $this->router->add('post-create', '/admin/posts/create', 'PostController:create');
 $this->router->add('post-edit', '/admin/posts/(id:int)', 'PostController:edit');
+
+$this->router->add('plugins-page', '/admin/plugins', 'PluginController:pluginsPage');
 
 // Posts Routes (POST)
 $this->router->add('post-add', '/admin/posts/add', 'PostController:add', 'POST');
