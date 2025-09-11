@@ -87,6 +87,11 @@ class UrlDispatcher
 
     public function dispatch($method, $uri): ?DispatchedRoute
     {
+        $uri = rtrim($uri, '/');
+        if ($uri === '') {
+            $uri = '/';
+        }
+
         $routes = $this->routes(strtoupper($method));
 
         if (array_key_exists($uri, $routes)) {
@@ -98,6 +103,11 @@ class UrlDispatcher
 
     private function doDispatch($method, $uri): ?DispatchedRoute
     {
+        $uri = rtrim($uri, '/');
+        if ($uri === '') {
+            $uri = '/';
+        }
+
         foreach ($this->routes($method) as $route => $controller) {
             $pattern = '#^' . $route . '$#s';
 

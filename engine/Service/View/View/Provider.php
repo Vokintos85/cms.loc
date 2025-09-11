@@ -1,9 +1,9 @@
 <?php
 
-namespace Engine\Service\View;
+namespace Engine\Service\View\View;
 
-use Engine\Service\AbstractProvider;
 use Engine\Core\Template\View;
+use Engine\Service\AbstractProvider;
 
 class Provider extends AbstractProvider
 {
